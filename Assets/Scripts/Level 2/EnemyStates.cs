@@ -8,6 +8,7 @@ public class EnemyStates : MonoBehaviour
     public enum EnemyState
     {
         Patrolling,
+        Alert,
         Dead
     }
 
@@ -16,16 +17,26 @@ public class EnemyStates : MonoBehaviour
 
 	public float distance = 10;
 	public float delay = 1;
-
     public int getPositionAttempts = 0;
+
+    public string []players;
+    public int playerTags;
+    
+
+    bool desCoroutineStarted = false;
+    bool tarCoroutineStarted = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        // players = new [GameObject.FindGameObjectsWithTag("Player")];
 
         myState = EnemyState.Patrolling;
-        StartCoroutine(FindDestination());
-	}
+        if (!desCoroutineStarted)
+        {
+            StartCoroutine(FindDestination());
+        }
+    }
 
 	void Update()
 	{
@@ -35,29 +46,59 @@ public class EnemyStates : MonoBehaviour
 			if (myState == EnemyState.Dead)
 			{
 				myState = EnemyState.Patrolling;
-			}
-			else
-			{
-				myState = EnemyState.Dead;
-			}
-		
-		}
+            }
 
-		switch (myState)
+            else if (myState == EnemyState.Patrolling)
+            {
+                myState = EnemyState.Alert;
+            }
+
+            else
+            {
+                myState = EnemyState.Dead;                      
+            }
+            			
+		}
+                
+        switch (myState)
 		{
 
 			case EnemyState.Patrolling:
 
+                GetComponent<MeshRenderer>().material.color = Color.blue;
+
+                tarCoroutineStarted = false;
+
+                if (!desCoroutineStarted)
+                {
+                    StartCoroutine(FindDestination());
+                }
+
+                break;
+
+            case EnemyState.Alert:
+
                 GetComponent<MeshRenderer>().material.color = Color.green;
-				
-				break;
+
+                desCoroutineStarted = false;
+
+                if (!tarCoroutineStarted)
+                {
+                    StartCoroutine(TargetPlayer());
+                }
+
+
+                break;
 
 			case EnemyState.Dead:
 
 				GetComponent<MeshRenderer>().material.color = Color.red;
 				agent.SetDestination(transform.position);
 
-				break;
+                desCoroutineStarted = false;
+                tarCoroutineStarted = false;
+
+                break;
 		}
 
 	}
@@ -65,7 +106,9 @@ public class EnemyStates : MonoBehaviour
 
 	IEnumerator FindDestination()
 	{
-		Vector3 position = transform.position;
+        desCoroutineStarted = true;
+
+        Vector3 position = transform.position;
 
         bool enemyIsStuck = false;
 
@@ -134,21 +177,26 @@ public class EnemyStates : MonoBehaviour
 		return position;
 	}
 
+    IEnumerator TargetPlayer()
+    {
+        tarCoroutineStarted = true;
+              
+           
+        while (myState == EnemyState.Alert)
+        {
+            
+            if (tag == "Player")
+            {
+                //agent.SetDestination()
+            }
+        }
+
+        return null;
+    }
+
     public void Die()
     {
         myState = EnemyState.Dead;
     }
-
-
-    /*float angleLeft = Mathf.Clamp(-20f + (getPositionAttempts * -2f), -20, -180);
-    //Setting the size of the left angle, min = -20, max = -180
-    Debug.Log("Left angle is " + angleLeft);
-
-    float angleRight = Mathf.Clamp(20f + (getPositionAttempts * 2f), 20, 180);
-    //Setting the size of the right angle, min = 20, max = 180
-    Debug.Log("Right angle is " + angleRight);*/
-
-    //(transform.rotation * Quaternion.Euler(0, Random.Range(-45, 45), 0)))*Vector3.forward;
-    //pos + Random.insideUnitSphere * dist; //setting a random position, within an invisible sphere around object
-
+     
 }
