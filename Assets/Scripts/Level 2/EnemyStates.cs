@@ -19,8 +19,7 @@ public class EnemyStates : MonoBehaviour
 	public float delay = 1;
     public int getPositionAttempts = 0;
 
-    public string []players;
-    public int playerTags;
+    public List <GameObject> players;
     
 
     bool desCoroutineStarted = false;
@@ -29,7 +28,8 @@ public class EnemyStates : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        // players = new [GameObject.FindGameObjectsWithTag("Player")];
+        players = new List<GameObject>();
+        GameObject.FindGameObjectsWithTag("Player");
 
         myState = EnemyState.Patrolling;
         if (!desCoroutineStarted)
@@ -177,6 +177,14 @@ public class EnemyStates : MonoBehaviour
 		return position;
 	}
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            myState = EnemyState.Alert;
+        }
+    }
+
     IEnumerator TargetPlayer()
     {
         tarCoroutineStarted = true;
@@ -184,7 +192,8 @@ public class EnemyStates : MonoBehaviour
            
         while (myState == EnemyState.Alert)
         {
-            
+            tarCoroutineStarted = true;
+
             if (tag == "Player")
             {
                 //agent.SetDestination()
