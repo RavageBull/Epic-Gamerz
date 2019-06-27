@@ -19,29 +19,40 @@ public class EnemyStates : MonoBehaviour
 	public float delay = 1;
     public int getPositionAttempts = 0;
 
-    public List <GameObject> players;
+    public GameObject detectionCol;
+    public bool playerDetected = false;
+    private GameObject player;
     
 
-    bool desCoroutineStarted = false;
-    bool tarCoroutineStarted = false;
+    private bool desCoroutineStarted = false;
+    private bool tarCoroutineStarted = false;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        players = new List<GameObject>();
-        GameObject.FindGameObjectsWithTag("Player");
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        
         myState = EnemyState.Patrolling;
+
         if (!desCoroutineStarted)
         {
             StartCoroutine(FindDestination());
+        }
+
+        if (playerDetected)
+        {
+            myState = EnemyState.Alert;
         }
     }
 
 	void Update()
 	{
+        if (playerDetected)
+        {
+            myState = EnemyState.Alert;
+        }
 
-		if (Input.GetKeyDown("z"))
+        if (Input.GetKeyDown("z"))
 		{
 			if (myState == EnemyState.Dead)
 			{
@@ -176,31 +187,18 @@ public class EnemyStates : MonoBehaviour
 		position.y = pos.y;
 		return position;
 	}
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            myState = EnemyState.Alert;
-        }
-    }
-
+      
     IEnumerator TargetPlayer()
     {
         tarCoroutineStarted = true;
-              
-           
-        while (myState == EnemyState.Alert)
-        {
-            tarCoroutineStarted = true;
+               
+                     
+       while (myState == EnemyState.Alert)
+       {
+          // agent.SetDestination();
+       }
 
-            if (tag == "Player")
-            {
-                //agent.SetDestination()
-            }
-        }
-
-        return null;
+        yield return new WaitForSeconds(delay);
     }
 
     public void Die()
