@@ -704,6 +704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 892828939}
   - component: {fileID: 892828940}
+  - component: {fileID: 892828941}
   m_Layer: 0
   m_Name: DetectionCollider
   m_TagString: Untagged
@@ -720,7 +721,7 @@ Transform:
   m_GameObject: {fileID: 892828938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.25, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1439571365}
   m_RootOrder: 0
@@ -736,8 +737,20 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 15, y: 1, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &892828941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892828938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2784bbcd7e20ed645890e7dbae4de049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &926457997
 GameObject:
   m_ObjectHideFlags: 0
@@ -15409,6 +15422,7 @@ MonoBehaviour:
   getPositionAttempts: 0
   detectionCol: {fileID: 892828938}
   playerDetected: 0
+  maxDetectDistance: 30
 --- !u!1 &1504893526
 GameObject:
   m_ObjectHideFlags: 0
@@ -15423,6 +15437,7 @@ GameObject:
   - component: {fileID: 1504893528}
   - component: {fileID: 1504893527}
   - component: {fileID: 1504893532}
+  - component: {fileID: 1504893533}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15442,6 +15457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01ead26fbaa00e4b853f9054ad0acd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!136 &1504893528
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15525,7 +15541,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 6
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -15537,6 +15553,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1504893533
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504893526}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1557932790
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class ColliderDetection : MonoBehaviour
 {
-    EnemyStates enemyStatesScript;
+    private EnemyStates enemyStatesScript;
+    
+    void Start()
+    {
+        enemyStatesScript = FindObjectOfType<EnemyStates>(); // Reference tp enemy state script
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag ("Player 1") || other.CompareTag("Player 2"))
+        //Debug.Log("Player entered collider");
+        if (other.CompareTag("Player"))
         {
             enemyStatesScript.playerDetected = true;
         }
     }
-        
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //Debug.Log("Player left collider");
+            enemyStatesScript.playerDetected = false;
+        }
+    }
+
 }

@@ -21,7 +21,9 @@ public class EnemyStates : MonoBehaviour
 
     public GameObject detectionCol;
     public bool playerDetected = false;
-    private GameObject player;
+    private PlayerMovement playerMovement;
+    private float detectedDis;
+    public float maxDetectDistance = 30f;
     
 
     private bool desCoroutineStarted = false;
@@ -30,8 +32,8 @@ public class EnemyStates : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        
+        playerMovement = FindObjectOfType<PlayerMovement>(); // Reference to player movement script
+
         myState = EnemyState.Patrolling;
 
         if (!desCoroutineStarted)
@@ -49,7 +51,7 @@ public class EnemyStates : MonoBehaviour
 	{
         if (playerDetected)
         {
-            myState = EnemyState.Alert;
+           myState = EnemyState.Alert;
         }
 
         if (Input.GetKeyDown("z"))
@@ -180,10 +182,6 @@ public class EnemyStates : MonoBehaviour
         // position adds to the angle axis (which is given the random angle value and up axis) then times the forward direction and distance.
         //New random position is decided with an angle rotation in a cone in front of enemy.
 
-        Debug.Log("random angle is " + randomAngle);
-        Debug.Log("angle position is " + anglePos);
-        Debug.Log("position is " + position);
-
 		position.y = pos.y;
 		return position;
 	}
@@ -191,11 +189,38 @@ public class EnemyStates : MonoBehaviour
     IEnumerator TargetPlayer()
     {
         tarCoroutineStarted = true;
-               
-                     
+                                 
        while (myState == EnemyState.Alert)
        {
-          // agent.SetDestination();
+
+            GameObject[] players;
+            players = GameObject.FindGameObjectsWithTag("Player"); //adds game objects tagged player to an array called players
+
+            //Calculates the distance between the enemy and player
+            detectedDis = Vector3.Distance(transform.position, playerMovement.playerPosition);
+                        
+            if(detectedDis <= maxDetectDistance) // if the player is in range the chase player
+            {
+                agent.SetDestination(playerMovement.playerPosition);
+            }
+            else if (detectedDis > maxDetectDistance) // if the player is out of range then go back to patrolling
+            {
+                Debug.Log("Player got away " + detectedDis);
+                myState = EnemyState.Patrolling;
+            }
+
+            //if(players.Length > 0)
+            //{
+                
+
+            //}
+
+            //foreach (GameObject player in players)
+            //{
+                
+            //}
+
+            yield return 0;
        }
 
         yield return new WaitForSeconds(delay);
