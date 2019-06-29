@@ -8,24 +8,40 @@ public class ColliderDetection : MonoBehaviour
     
     void Start()
     {
-        enemyStatesScript = FindObjectOfType<EnemyStates>(); // Reference tp enemy state script
+        enemyStatesScript = transform.root.GetComponent<EnemyStates>(); // Reference to enemy state script
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
         //Debug.Log("Player entered collider");
-        if (other.CompareTag("Player"))
+        //if (other.CompareTag("Player"))
+        //{
+        //    enemyStatesScript.playerDetected = true;
+        //}
+
+        Debug.Log("Triggered");
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if (player != null)
         {
+            Debug.Log("Detected");
+            // enemyStatesScript.SetStateToAlert();
             enemyStatesScript.playerDetected = true;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if (player != null)
         {
-            //Debug.Log("Player left collider");
+
             enemyStatesScript.playerDetected = false;
+
+            //if (enemyStatesScript.tarCoroutineStarted == false)
+            //{
+            //    enemyStatesScript.SetStateToPatol();
+            //}
         }
     }
 

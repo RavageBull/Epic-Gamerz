@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class PlayerMovement : MonoBehaviour
 {
     NavMeshAgent agent;
-    public Vector3 playerPosition;
+   
+    public int playerNumber = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -14,32 +15,14 @@ public class PlayerMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
-        playerPosition = transform.position;
+       
+        Vector3 moveDirection = new Vector3(-Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal"));
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            playerPosition += Vector3.back * agent.speed * Time.deltaTime;
-        }
+        transform.position += moveDirection * agent.speed * Time.fixedDeltaTime;
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            playerPosition += Vector3.forward * agent.speed * Time.deltaTime;
-
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            playerPosition += Vector3.left * agent.speed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            playerPosition += Vector3.right * agent.speed * Time.deltaTime;
-        }
-        
+               
     }
 }
