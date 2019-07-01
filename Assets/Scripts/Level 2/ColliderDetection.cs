@@ -20,14 +20,22 @@ public class ColliderDetection : MonoBehaviour
         //    enemyStatesScript.playerDetected = true;
         //}
 
-        Debug.Log("Triggered");
         PlayerMovement player = other.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            Debug.Log("Detected");
             // enemyStatesScript.SetStateToAlert();
             enemyStatesScript.playerDetected = true;
+            enemyStatesScript.player = player.transform;
+            return;
         }
+
+        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+        if(playerTwo != null)
+        {
+            enemyStatesScript.playerDetected = true;
+            enemyStatesScript.player = playerTwo.transform;
+        }
+
     }
 
     void OnTriggerExit(Collider other)
@@ -36,12 +44,19 @@ public class ColliderDetection : MonoBehaviour
         if (player != null)
         {
 
-            enemyStatesScript.playerDetected = false;
+            enemyStatesScript.playerDetected = false;            
+            return;
 
             //if (enemyStatesScript.tarCoroutineStarted == false)
             //{
             //    enemyStatesScript.SetStateToPatol();
             //}
+        }
+
+        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+        if (playerTwo != null)
+        {
+            enemyStatesScript.playerDetected = true;
         }
     }
 

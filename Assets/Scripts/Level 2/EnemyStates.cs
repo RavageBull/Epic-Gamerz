@@ -21,7 +21,8 @@ public class EnemyStates : MonoBehaviour
 
     public GameObject detectionCol;
     public bool playerDetected = false;
-    private PlayerMovement playerMovement;
+    //private PlayerMovement playerMovement;
+    public Transform player; // The target position for the player
     private float detectedDis;
     public float maxDetectDistance = 30f;
     
@@ -32,7 +33,7 @@ public class EnemyStates : MonoBehaviour
     void Start()  
     {
         agent = GetComponent<NavMeshAgent>();
-        playerMovement = FindObjectOfType<PlayerMovement>(); // Reference to player movement script
+        //playerMovement = FindObjectOfType<PlayerMovement>(); // Reference to player movement script
 
         myState = EnemyState.Patrolling;
 
@@ -61,6 +62,11 @@ public class EnemyStates : MonoBehaviour
     public void SetStateToPatol()
     {
         EnterState(EnemyState.Patrolling);
+    }
+
+    public void SetStateToDead()
+    {
+        EnterState(EnemyState.Dead);
     }
 
     private void EnterState(EnemyState state)
@@ -102,8 +108,10 @@ public class EnemyStates : MonoBehaviour
 
             case EnemyState.Dead:
 
-                GetComponent<MeshRenderer>().material.color = Color.red;
-                agent.SetDestination(transform.position);
+                //GetComponent<MeshRenderer>().material.color = Color.red;
+                //agent.SetDestination(transform.position);
+
+                Die();
 
                 desCoroutineStarted = false;
                 tarCoroutineStarted = false;
@@ -145,15 +153,15 @@ public class EnemyStates : MonoBehaviour
             players = GameObject.FindGameObjectsWithTag("Player"); //adds game objects tagged player to an array called players
 
             //Calculates the distance between the enemy and player
-            detectedDis = Vector3.Distance(transform.position, playerMovement.transform.position);
+            detectedDis = Vector3.Distance(transform.position, player.position);
                         
             if(detectedDis < maxDetectDistance) // if the player is in range the chase player
             {
-                agent.SetDestination(playerMovement.transform.position);
+                agent.SetDestination(player.position);
             }
-            else if (detectedDis > maxDetectDistance) // if the player is out of range then go back to patrolling
+            else //if (detectedDis > maxDetectDistance) // if the player is out of range then go back to patrolling
             {
-                Debug.Log("Player got away " + detectedDis);
+                //Debug.Log("Player got away " + detectedDis);
                 //myState = EnemyState.Patrolling;
                 SetStateToPatol();
             }
@@ -219,7 +227,7 @@ public class EnemyStates : MonoBehaviour
             }
 
             Debug.DrawLine(transform.position, position, Color.cyan);
-
+            // ashdasjdshjh
             yield return new WaitForSeconds(delay); //the loop will run through, wait a delay and go again
         }
     }
@@ -248,9 +256,10 @@ public class EnemyStates : MonoBehaviour
 
     #endregion
 
-    public void Die()
+    private void Die()
     {
-        myState = EnemyState.Dead;
+        Debug.Log("I Died");
+        Destroy(gameObject);
     }
      
 }

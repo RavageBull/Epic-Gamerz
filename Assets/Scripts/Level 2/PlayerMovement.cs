@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     NavMeshAgent agent;
    
     public int playerNumber = 1;
+    public float rotationSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position += moveDirection * agent.speed * Time.fixedDeltaTime;
 
-               
+        transform.Rotate(0, Input.GetAxis("HorizontalRotation") * rotationSpeed * Time.deltaTime, 0);
+
+
     }
 }
