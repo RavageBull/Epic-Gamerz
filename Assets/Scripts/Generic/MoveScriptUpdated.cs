@@ -20,7 +20,7 @@ public class MoveScriptUpdated : MonoBehaviour
     {
        float hAxis = Input.GetAxis("Horizontal");
        float vAxis = Input.GetAxis("Vertical");
-       float HCAxis = Input.GetAxis("HorizontalController");
+       float HCAxis = Input.GetAxis("HorizontalRotation");
        //float HCVAxis = Input.GetAxis("VerticalController");
         
         
