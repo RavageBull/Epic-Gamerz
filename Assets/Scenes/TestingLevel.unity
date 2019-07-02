@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -399,6 +399,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &924456833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924456825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777edf5dcb54794d84ba18f86e14cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  range: 1
+  firePoint: {fileID: 1632569605}
+  fireRate: 1.5
 --- !u!1 &1247207125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9138792494753514445, guid: cfd5944f6e639ce47859e57aaa508302,
@@ -449,6 +465,12 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!4 &1632569605 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2013696757, guid: a38bf7cbff990d748a754b67c11cafdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 9178516412668174148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2019095081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -659,10 +681,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5342490908121820054, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342490908121820054, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2542917680572811633, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
       propertyPath: speed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542917680572811633, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013696757, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2013696758, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8889313207018460805, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
