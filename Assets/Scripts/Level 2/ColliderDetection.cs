@@ -5,6 +5,7 @@ using UnityEngine;
 public class ColliderDetection : MonoBehaviour
 {
     private EnemyStates enemyStatesScript;
+
     
     void Start()
     {
@@ -14,26 +15,22 @@ public class ColliderDetection : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Player entered collider");
-        //if (other.CompareTag("Player"))
-        //{
-        //    enemyStatesScript.playerDetected = true;
-        //}
-
         PlayerMovement player = other.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            // enemyStatesScript.SetStateToAlert();
-            enemyStatesScript.playerDetected = true;
+            enemyStatesScript.SetStateToAlert();
             enemyStatesScript.player = player.transform;
+            enemyStatesScript.players.Add(player);
+
             return;
         }
 
         MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
         if(playerTwo != null)
         {
-            enemyStatesScript.playerDetected = true;
+            enemyStatesScript.SetStateToAlert();
             enemyStatesScript.player = playerTwo.transform;
+                       
         }
 
     }
@@ -44,19 +41,16 @@ public class ColliderDetection : MonoBehaviour
         if (player != null)
         {
 
-            enemyStatesScript.playerDetected = false;            
+            enemyStatesScript.SetStateToPatol();
+            enemyStatesScript.players.Remove(player);
             return;
 
-            //if (enemyStatesScript.tarCoroutineStarted == false)
-            //{
-            //    enemyStatesScript.SetStateToPatol();
-            //}
         }
 
         MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
         if (playerTwo != null)
         {
-            enemyStatesScript.playerDetected = true;
+            enemyStatesScript.SetStateToPatol();
         }
     }
 

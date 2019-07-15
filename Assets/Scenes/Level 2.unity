@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657886, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -118,7 +118,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11498
+  m_Name: pb_Mesh12820
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -278,7 +278,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11444
+  m_Name: pb_Mesh12756
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -448,7 +448,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11562
+  m_Name: pb_Mesh12872
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 796171799}
   - component: {fileID: 796171798}
   - component: {fileID: 796171797}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 926457998}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enviroment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 961331254}
   - component: {fileID: 961331253}
   - component: {fileID: 961331252}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor3Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3409,7 +3409,7 @@ GameObject:
   - component: {fileID: 986604249}
   - component: {fileID: 986604248}
   - component: {fileID: 986604247}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8772,7 +8772,7 @@ GameObject:
   - component: {fileID: 1029765426}
   - component: {fileID: 1029765425}
   - component: {fileID: 1029765424}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12603,7 +12603,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh4166
+  m_Name: pb_Mesh12784
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -12779,7 +12779,7 @@ GameObject:
   - component: {fileID: 1366813494}
   - component: {fileID: 1366813493}
   - component: {fileID: 1366813492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BackgroundPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12873,7 +12873,7 @@ GameObject:
   - component: {fileID: 1388454721}
   - component: {fileID: 1388454720}
   - component: {fileID: 1388454719}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor2WallsLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14115,13 +14115,13 @@ GameObject:
   - component: {fileID: 1437751952}
   - component: {fileID: 1437751951}
   - component: {fileID: 1437751950}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor1Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 127
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1437751950
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -15358,6 +15358,7 @@ GameObject:
   - component: {fileID: 1504893527}
   - component: {fileID: 1504893532}
   - component: {fileID: 1504893533}
+  - component: {fileID: 1504893534}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15450,7 +15451,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1156562401}
-  - {fileID: 1885147389}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15492,6 +15492,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1504893534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504893526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b64c95fb70875d4ca85e4d1d00b72ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 100
 --- !u!1 &1557932790
 GameObject:
   m_ObjectHideFlags: 0
@@ -15567,7 +15580,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11512
+  m_Name: pb_Mesh12834
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -15735,7 +15748,7 @@ GameObject:
   - component: {fileID: 1843471807}
   - component: {fileID: 1843471806}
   - component: {fileID: 1843471805}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor2WallsRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17038,12 +17051,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885147386}
-  m_LocalRotation: {x: 0.26613232, y: 0.01156652, z: -0.00319371, w: 0.9638618}
-  m_LocalPosition: {x: 1.2928636, y: 3.9855428, z: -4.806328}
+  m_LocalRotation: {x: 0.33819705, y: -0.61993283, z: 0.33657798, w: 0.62291354}
+  m_LocalPosition: {x: 23.75, y: 41.81, z: -47.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1504893531}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: -90, z: 0}
 --- !u!1 &1931744543
 GameObject:
@@ -17096,7 +17109,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11458
+  m_Name: pb_Mesh12770
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -17272,6 +17285,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4217106438682956689, guid: 5cb386dcfac7cd446b261f664fbdebc5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4217106438682956692, guid: 5cb386dcfac7cd446b261f664fbdebc5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17349,5 +17367,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 0
-  fireRate: 0
+  damage: 25
+--- !u!114 &4217106437387308596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217106437387308594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b64c95fb70875d4ca85e4d1d00b72ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 100

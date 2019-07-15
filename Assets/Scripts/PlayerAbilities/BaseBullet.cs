@@ -29,7 +29,7 @@ public class BaseBullet : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
-            Debug.Log(hit.transform.name);
+          //  Debug.Log(hit.transform.name);
 
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
@@ -37,8 +37,7 @@ public class BaseBullet : MonoBehaviour
                 target.TakeDamage(damage);
             }
             //reduce enemy health
-
-
+            
         }
 
 

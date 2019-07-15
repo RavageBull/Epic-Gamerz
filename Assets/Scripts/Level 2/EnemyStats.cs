@@ -7,10 +7,8 @@ public class EnemyStats : MonoBehaviour
     private EnemyStates enemyStatesScript;
 
     public int health = 100;
-
-    public int damage;
-    public int fireRate;
-
+    public int damage = 25;
+    
     // Start is called before the first frame update
     void Start()
     {

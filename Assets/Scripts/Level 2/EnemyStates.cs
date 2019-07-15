@@ -9,7 +9,8 @@ public class EnemyStates : MonoBehaviour
     {
         Patrolling,
         Alert,
-        Dead
+        Dead,
+        Attacking
     }
 
     public EnemyState myState;
@@ -20,16 +21,18 @@ public class EnemyStates : MonoBehaviour
     public int getPositionAttempts = 0;
 
     public GameObject detectionCol;
-    public bool playerDetected = false;
-    //private PlayerMovement playerMovement;
+    //public bool playerDetected = false;
     public Transform player; // The target position for the player
     private float detectedDis;
     public float maxDetectDistance = 30f;
+    private float attackingDis = 10f;
+
+    public List<PlayerMovement> players;
+    private PlayerMovement attackTarget;
+    private EnemyStats enemyStats;
     
-
     public bool desCoroutineStarted = false;
-    public bool tarCoroutineStarted = false;
-
+    
     void Start()  
     {
         agent = GetComponent<NavMeshAgent>();
@@ -47,11 +50,7 @@ public class EnemyStates : MonoBehaviour
 	void Update()
     {
         HandleStates();
-
-        if (playerDetected)
-        {
-            SetStateToAlert();
-        }
+                
 	}
 
     public void SetStateToAlert()
@@ -69,6 +68,11 @@ public class EnemyStates : MonoBehaviour
         EnterState(EnemyState.Dead);
     }
 
+    public void SetStateToAttack()
+    {
+        EnterState(EnemyState.Attacking);
+    }
+
     private void EnterState(EnemyState state)
     {
         myState = state;
@@ -83,8 +87,6 @@ public class EnemyStates : MonoBehaviour
 
                 GetComponent<MeshRenderer>().material.color = Color.blue;
 
-                tarCoroutineStarted = false;
-
                 if (!desCoroutineStarted)
                 {
                     StartCoroutine(FindDestination());
@@ -98,23 +100,26 @@ public class EnemyStates : MonoBehaviour
 
                 desCoroutineStarted = false;
 
-                if (!tarCoroutineStarted)
-                {
-                    StartCoroutine(TargetPlayer());
-                }
-
-
+                TargetPlayer();
+                               
                 break;
 
             case EnemyState.Dead:
-
-                //GetComponent<MeshRenderer>().material.color = Color.red;
-                //agent.SetDestination(transform.position);
-
+                               
                 Die();
 
                 desCoroutineStarted = false;
-                tarCoroutineStarted = false;
+               
+                break;
+
+            case EnemyState.Attacking:
+
+                Debug.Log("I should be " + myState);
+                GetComponent<MeshRenderer>().material.color = Color.red;
+
+                desCoroutineStarted = false;
+
+                AttackPlayer();
 
                 break;
         }
@@ -142,46 +147,65 @@ public class EnemyStates : MonoBehaviour
         }
     }
       
-    IEnumerator TargetPlayer()
+    private void TargetPlayer()
     {
-        tarCoroutineStarted = true;
-                                 
-       while (myState == EnemyState.Alert)
-       {
-
-            GameObject[] players;
-            players = GameObject.FindGameObjectsWithTag("Player"); //adds game objects tagged player to an array called players
-
-            //Calculates the distance between the enemy and player
-            detectedDis = Vector3.Distance(transform.position, player.position);
+        if(players.Count == 0)
+        {
+            SetStateToPatol();
+            return;
+        }
+               
+        //Calculates the distance between the enemy and a random detected player from list of players
+        int randIndex = Random.Range(0, players.Count);
+        PlayerMovement randPlayer = players[randIndex];
+        detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
                         
-            if(detectedDis < maxDetectDistance) // if the player is in range the chase player
+
+        if(detectedDis < maxDetectDistance) // if the player is in range the chase player
+        {
+
+            attackTarget = randPlayer;
+            agent.SetDestination(randPlayer.transform.position);
+
+            if (detectedDis < attackingDis)
             {
-                agent.SetDestination(player.position);
+                SetStateToAttack();
+                Debug.Log("State set to attack" + myState);
             }
-            else //if (detectedDis > maxDetectDistance) // if the player is out of range then go back to patrolling
-            {
-                //Debug.Log("Player got away " + detectedDis);
-                //myState = EnemyState.Patrolling;
-                SetStateToPatol();
-            }
-
-            //if(players.Length > 0)
-            //{
-                
-
-            //}
-
-            //foreach (GameObject player in players)
-            //{
-                
-            //}
-
-            yield return 0;
-       }
-
-        yield return new WaitForSeconds(delay);
+        }            
+             
     }
+
+    private void AttackPlayer()
+    {
+
+        Debug.Log("Damage dealt");
+        attackTarget.TakeDamage(enemyStats.damage);
+    }
+
+
+
+        //RaycastHit hit;
+virtual        
+        //Debug.DrawLine(transform.position, (transform.forward * distance), Color.red, 5f);
+
+        //if (Physics.Raycast(ray, out hit, distance))
+        //{
+        //    Debug.Log(hit.transform.name);
+
+        //    if (attackTarget != null)
+        //    {
+        //        attackTarget.TakeDamage(enemyStats.damage);
+        //        Debug.Log("Damage dealt");
+        //    }
+
+        //    //if ()
+        //    //{
+
+        //    //}
+        //    // Set back to alert
+        //}
+    
 
     #region Detection
 
@@ -227,7 +251,6 @@ public class EnemyStates : MonoBehaviour
             }
 
             Debug.DrawLine(transform.position, position, Color.cyan);
-            // ashdasjdshjh
             yield return new WaitForSeconds(delay); //the loop will run through, wait a delay and go again
         }
     }
