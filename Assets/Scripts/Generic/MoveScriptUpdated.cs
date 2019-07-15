@@ -6,13 +6,13 @@ using UnityEngine.AI;
 public class MoveScriptUpdated : MonoBehaviour
 {
     NavMeshAgent agent;
-    private Rigidbody rig;
+    //private Rigidbody rig;
     public float rotationSpeed = 120f;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        rig = GetComponent<Rigidbody>();
+        //rig = GetComponent<Rigidbody>();
     }
 
 
@@ -25,12 +25,12 @@ public class MoveScriptUpdated : MonoBehaviour
         
         
         Vector3 movement = new Vector3(hAxis, 0, vAxis) * agent.speed * Time.deltaTime;
-
-       rig.MovePosition(transform.position + movement);
+        transform.position += movement;
+      // rig.MovePosition(transform.position + movement);
 
        transform.Rotate(0,HCAxis * rotationSpeed * Time.deltaTime, 0);
 
-       Debug.Log(HCAxis);
+     //  Debug.Log(HCAxis);
 
 
       
@@ -42,14 +42,14 @@ public class MoveScriptUpdated : MonoBehaviour
 
 
 
-        if (Input.GetButton("Fire1"))
-        {
-            print("Test");
-        }
-        if (Input.GetButton("Fire2"))
-        {
-            print("This is controller 2");
-        }
+        //if (Input.GetButton("Fire1"))
+        //{
+        //    print("Test");
+        //}
+        //if (Input.GetButton("Fire2"))
+        //{
+        //    print("This is controller 2");
+        //}
     }
 
 

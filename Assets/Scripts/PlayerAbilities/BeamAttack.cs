@@ -19,18 +19,57 @@ public class BeamAttack : MonoBehaviour
     // also there is a lot of stuff you can look up on there, there are different sections to click on, on the left
 
     //Just do things step by step and you'll be fine, focus on one thing at a time and google things you are confused about or want to know more about.
-    
+
     // After you get the basic stuff working, look into particle effects and sounds.
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float damage = 1f;
+    public float range = 100f;
+    public Transform firePoint;
+
+    [SerializeField]
+    [Range(0f, 1.5f)]
+    private float fireRate = 5f;
+    private float cooldown = 0f;
+
+
+
 
     // Update is called once per frame
     void Update()
     {
+       
+       if (Input.GetButtonDown("Fire1") && Time.time >= cooldown)
+            {
+
+            cooldown = Time.time + fireRate;
+            Debug.Log("Cooldown time is " + cooldown);
+
+                Debug.Log("Fired");
+                Cast();
+
+            }
+
         
     }
+
+          
+    void Cast()
+    {
+        RaycastHit hit;
+        Debug.DrawLine(firePoint.position, (firePoint.forward * range), Color.red, 2f);
+
+        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
+        {
+
+            Debug.Log("Raycast hit this thing "+hit.transform.name);    
+    
+        }
+
+    }
+
+
 }
+
+
+
+
