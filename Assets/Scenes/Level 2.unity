@@ -15505,6 +15505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhealth: 100
+  currentHealth: 0
 --- !u!1 &1557932790
 GameObject:
   m_ObjectHideFlags: 0
@@ -17051,13 +17052,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885147386}
-  m_LocalRotation: {x: 0.33819705, y: -0.61993283, z: 0.33657798, w: 0.62291354}
-  m_LocalPosition: {x: 23.75, y: 41.81, z: -47.13}
+  m_LocalRotation: {x: 0.3535534, y: -0.61237246, z: 0.3535534, w: 0.61237246}
+  m_LocalPosition: {x: 40, y: 75, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 45, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: -90, z: 0}
 --- !u!1 &1931744543
 GameObject:
   m_ObjectHideFlags: 0
@@ -17345,6 +17346,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4217106438682956694, guid: 5cb386dcfac7cd446b261f664fbdebc5,
+        type: 3}
+      propertyPath: attackCoolDown
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4217106437065454397, guid: 5cb386dcfac7cd446b261f664fbdebc5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5cb386dcfac7cd446b261f664fbdebc5, type: 3}
@@ -17368,16 +17374,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 25
---- !u!114 &4217106437387308596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4217106437387308594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b64c95fb70875d4ca85e4d1d00b72ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxhealth: 100

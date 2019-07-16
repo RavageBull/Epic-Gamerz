@@ -13,6 +13,15 @@ public class ColliderDetection : MonoBehaviour
         
     }
 
+    void Update()
+    {
+        PlayerMovement player = GetComponent<PlayerMovement>();
+        if (enemyStatesScript.detectedDis > enemyStatesScript.maxDetectDistance)
+        {
+            enemyStatesScript.players.Remove(player);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         PlayerMovement player = other.GetComponent<PlayerMovement>();
@@ -26,32 +35,34 @@ public class ColliderDetection : MonoBehaviour
         }
 
         MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
-        if(playerTwo != null)
+        if (playerTwo != null)
         {
             enemyStatesScript.SetStateToAlert();
             enemyStatesScript.player = playerTwo.transform;
-                       
+            //enemyStatesScript.players2.Add(playerTwo);
         }
 
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        PlayerMovement player = other.GetComponent<PlayerMovement>();
-        if (player != null)
-        {
+    //void OnTriggerExit(Collider other)
+    //{
+    //    PlayerMovement player = other.GetComponent<PlayerMovement>();
+    //    if (player != null)
+    //    {
+    //        if (enemyStatesScript.detectedDis > enemyStatesScript.maxDetectDistance)
+    //        {
+    //            enemyStatesScript.players.Remove(player);
+    //        }
+                
+    //        return;
 
-            enemyStatesScript.SetStateToPatol();
-            enemyStatesScript.players.Remove(player);
-            return;
+    //    }
 
-        }
-
-        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
-        if (playerTwo != null)
-        {
-            enemyStatesScript.SetStateToPatol();
-        }
-    }
+    //    //MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+    //    //if (playerTwo != null)
+    //    //{
+    //    //    enemyStatesScript.SetStateToPatol();
+    //    //}
+    //}
 
 }

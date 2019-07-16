@@ -18,39 +18,35 @@ public class EnemyStates : MonoBehaviour
 
 	public float distance = 10;
 	public float delay = 1;
-    public int getPositionAttempts = 0;
+    private int getPositionAttempts = 0;
 
     public GameObject detectionCol;
-    //public bool playerDetected = false;
     public Transform player; // The target position for the player
-    private float detectedDis;
+    public float detectedDis;
     public float maxDetectDistance = 30f;
-    private float attackingDis = 10f;
+    public float attackingDis = 5f;
+    private float coolDownTimer;
+    public float attackCoolDown = 5f;
 
     public List<PlayerMovement> players;
     private PlayerMovement attackTarget;
     private EnemyStats enemyStats;
     
     public bool desCoroutineStarted = false;
-    
+    public bool canAttack = false;
+
     void Start()  
     {
         agent = GetComponent<NavMeshAgent>();
         //playerMovement = FindObjectOfType<PlayerMovement>(); // Reference to player movement script
 
         myState = EnemyState.Patrolling;
-
-        if (!desCoroutineStarted)
-        {
-            StartCoroutine(FindDestination());
-        }
-                
+                             
     }
 
 	void Update()
     {
         HandleStates();
-                
 	}
 
     public void SetStateToAlert()
@@ -105,16 +101,15 @@ public class EnemyStates : MonoBehaviour
                 break;
 
             case EnemyState.Dead:
-                               
-                Die();
 
                 desCoroutineStarted = false;
+                               
+                Die();
                
                 break;
 
             case EnemyState.Attacking:
 
-                Debug.Log("I should be " + myState);
                 GetComponent<MeshRenderer>().material.color = Color.red;
 
                 desCoroutineStarted = false;
@@ -149,44 +144,83 @@ public class EnemyStates : MonoBehaviour
       
     private void TargetPlayer()
     {
-        if(players.Count == 0)
+        if (players.Count == 0)
         {
             SetStateToPatol();
             return;
         }
-               
+
         //Calculates the distance between the enemy and a random detected player from list of players
         int randIndex = Random.Range(0, players.Count);
         PlayerMovement randPlayer = players[randIndex];
         detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
-                        
+                      
+        if(detectedDis < maxDetectDistance && detectedDis > attackingDis) // if the player is in range the chase player
+        {
+            attackTarget = randPlayer;
+            agent.SetDestination(attackTarget.transform.position);
 
-        if(detectedDis < maxDetectDistance) // if the player is in range the chase player
+        }            
+        else if (detectedDis <= attackingDis)
         {
 
-            attackTarget = randPlayer;
-            agent.SetDestination(randPlayer.transform.position);
-
-            if (detectedDis < attackingDis)
-            {
-                SetStateToAttack();
-                Debug.Log("State set to attack" + myState);
-            }
-        }            
+            attackTarget = randPlayer;         
+            SetStateToAttack();
+  
+        }
+        else if (detectedDis > maxDetectDistance)
+        {
+           
+            SetStateToPatol();
+            return;
+    
+        }
              
     }
 
     private void AttackPlayer()
     {
+                
+        if (detectedDis <= attackingDis)
+        {
+            agent.SetDestination(attackTarget.transform.position);
 
-        Debug.Log("Damage dealt");
-        attackTarget.TakeDamage(enemyStats.damage);
+            if (coolDownTimer <= 0)
+            {
+                canAttack = true;
+                coolDownTimer = attackCoolDown;
+                Debug.Log(coolDownTimer);
+            }
+            else
+            {
+                coolDownTimer -= Time.deltaTime;
+            }
+
+            if (canAttack && players.Count > 0)
+            {
+                attackTarget.GetComponent<Health>().Change(-10);
+                canAttack = false;
+            }
+
+        }
+        else if (detectedDis > attackingDis && detectedDis < maxDetectDistance)
+        {
+            SetStateToAlert();
+            return;
+        }
+
+        else
+        {
+            SetStateToPatol();
+            return;
+        }
+
     }
 
 
 
         //RaycastHit hit;
-        
+      
         //Debug.DrawLine(transform.position, (transform.forward * distance), Color.red, 5f);
 
         //if (Physics.Raycast(ray, out hit, distance))
