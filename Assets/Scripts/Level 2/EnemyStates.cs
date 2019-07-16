@@ -186,7 +186,7 @@ public class EnemyStates : MonoBehaviour
 
 
         //RaycastHit hit;
-virtual        
+        
         //Debug.DrawLine(transform.position, (transform.forward * distance), Color.red, 5f);
 
         //if (Physics.Raycast(ray, out hit, distance))
