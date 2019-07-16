@@ -18,33 +18,30 @@ public class EnemyStates : MonoBehaviour
 
 	public float distance = 10;
 	public float delay = 1;
-    public int getPositionAttempts = 0;
+    private int getPositionAttempts = 0;
 
     public GameObject detectionCol;
-    //public bool playerDetected = false;
     public Transform player; // The target position for the player
     private float detectedDis;
     public float maxDetectDistance = 30f;
-    private float attackingDis = 10f;
+    public float attackingDis = 5f;
+    public float coolDownTimer;
+    public float attackCoolDown = 5f;
 
     public List<PlayerMovement> players;
     private PlayerMovement attackTarget;
     private EnemyStats enemyStats;
     
     public bool desCoroutineStarted = false;
-    
+    public bool canAttack = false;
+
     void Start()  
     {
         agent = GetComponent<NavMeshAgent>();
         //playerMovement = FindObjectOfType<PlayerMovement>(); // Reference to player movement script
 
         myState = EnemyState.Patrolling;
-
-        if (!desCoroutineStarted)
-        {
-            StartCoroutine(FindDestination());
-        }
-                
+                             
     }
 
 	void Update()
@@ -114,7 +111,6 @@ public class EnemyStates : MonoBehaviour
 
             case EnemyState.Attacking:
 
-                Debug.Log("I should be " + myState);
                 GetComponent<MeshRenderer>().material.color = Color.red;
 
                 desCoroutineStarted = false;
@@ -159,34 +155,64 @@ public class EnemyStates : MonoBehaviour
         int randIndex = Random.Range(0, players.Count);
         PlayerMovement randPlayer = players[randIndex];
         detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
-                        
-
-        if(detectedDis < maxDetectDistance) // if the player is in range the chase player
+                      
+        if(detectedDis < maxDetectDistance && detectedDis > attackingDis) // if the player is in range the chase player
         {
-
             attackTarget = randPlayer;
-            agent.SetDestination(randPlayer.transform.position);
+            agent.SetDestination(attackTarget.transform.position);
 
-            if (detectedDis < attackingDis)
-            {
-                SetStateToAttack();
-                Debug.Log("State set to attack" + myState);
-            }
         }            
+        else if (detectedDis < attackingDis)
+        {
+            attackTarget = randPlayer;
+            SetStateToAttack();
+            Debug.Log("State set to attack");
+        }
              
     }
 
     private void AttackPlayer()
     {
+        if(coolDownTimer <= 0)
+        {
+            canAttack = true;
+            coolDownTimer = attackCoolDown;
+            Debug.Log(coolDownTimer);
+        }
+        else
+        {
+           //canAttack = false;
+            coolDownTimer -= Time.deltaTime;
+           // Debug.Log(coolDownTimer);
+           //adssda
+        }
+        
+        if (canAttack)
+        {
+            if(detectedDis < attackingDis)
+            {
+                Debug.Log("Damage is being dealt");
+                agent.SetDestination(attackTarget.transform.position);
+                attackTarget.GetComponent<Health>().Change(-10);
+                canAttack = false;
+            }
+            else if (detectedDis > attackingDis && detectedDis < maxDetectDistance)
+            {
+                SetStateToAlert();
+            }
+            else
+            {
+                SetStateToPatol();
+            }
+        }
 
-        Debug.Log("Damage dealt");
-        attackTarget.TakeDamage(enemyStats.damage);
+
     }
 
 
 
         //RaycastHit hit;
-virtual        
+      
         //Debug.DrawLine(transform.position, (transform.forward * distance), Color.red, 5f);
 
         //if (Physics.Raycast(ray, out hit, distance))

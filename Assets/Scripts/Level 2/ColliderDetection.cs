@@ -25,13 +25,13 @@ public class ColliderDetection : MonoBehaviour
             return;
         }
 
-        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
-        if(playerTwo != null)
-        {
-            enemyStatesScript.SetStateToAlert();
-            enemyStatesScript.player = playerTwo.transform;
+        //MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+        //if(playerTwo != null)
+        //{
+        //    enemyStatesScript.SetStateToAlert();
+        //    enemyStatesScript.player = playerTwo.transform;
                        
-        }
+        //}
 
     }
 
@@ -41,17 +41,17 @@ public class ColliderDetection : MonoBehaviour
         if (player != null)
         {
 
-            enemyStatesScript.SetStateToPatol();
-            enemyStatesScript.players.Remove(player);
+           // enemyStatesScript.SetStateToPatol();
+          // enemyStatesScript.players.Remove(player);
             return;
 
         }
 
-        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
-        if (playerTwo != null)
-        {
-            enemyStatesScript.SetStateToPatol();
-        }
+        //MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+        //if (playerTwo != null)
+        //{
+        //    enemyStatesScript.SetStateToPatol();
+        //}
     }
 
 }

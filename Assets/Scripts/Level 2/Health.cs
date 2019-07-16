@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     public int maxhealth = 100;
 
     public int CurrentHealth { get; private set; }
+    public int currentHealth;
 
     public event Action OnDeath; // Subscribe to me
     public event Action<int> OnHealthChanged;
@@ -15,6 +16,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         CurrentHealth = maxhealth;
+        currentHealth = CurrentHealth;
     }
 
     // Change the health amount
@@ -33,6 +35,7 @@ public class Health : MonoBehaviour
     // Keep health within values
     private void ValidateHealth()
     {
+        currentHealth = CurrentHealth;
         if (CurrentHealth < 0)
         {
             Death();
@@ -53,7 +56,10 @@ public class Health : MonoBehaviour
         {
             OnDeath();
         }
-        Destroy(gameObject);
+        Debug.Log("Player died " + CurrentHealth);
+        GetComponent<MeshRenderer>().material.color = Color.red;
+        transform.position = transform.position;
+        // Destroy(gameObject);
     }
 
 }
