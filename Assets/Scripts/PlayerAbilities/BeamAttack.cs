@@ -52,6 +52,11 @@ public class BeamAttack : MonoBehaviour
 
                 Debug.Log("Raycast hit this thing " + hit.transform.name);
 
+            EnemyStats target = hit.transform.GetComponent<EnemyStats>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
         }
 
         Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
