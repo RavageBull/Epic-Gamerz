@@ -7,23 +7,29 @@ public class BaseWeapon : MonoBehaviour
 
 {
     PlayerControl PController;
-  //  public float speed = 15;
+    //PlayerMovement otherController; //just a reference to the enemy testing player script
+
     public int damage = 25;
     public float maxDistance = 100f;
     private void Start()
     {
         PController = GetComponentInParent<PlayerControl>();
+        //otherController = GetComponentInParent<PlayerMovement>();
     }
     // Update is called once per frame
     void Update()
     {
         //Moves Fowards based on speed
-      //  GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        //  GetComponent<Rigidbody>().velocity = transform.forward * speed;
 
-        if (Input.GetButtonDown(PController.F1))
+      if(PController != null)
         {
-            Shoot();
+            if (Input.GetButtonDown(PController.F1))
+            {
+                Shoot();
+            }
         }
+        
     }
 
     void Shoot()

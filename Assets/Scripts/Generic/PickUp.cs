@@ -14,29 +14,31 @@ public class PickUp : MonoBehaviour
     public float speedMultiValue;
     public int cooldownValue = 3;
 
-    public Material matofobject;
+    //public Material matofobject;
     public Color newcol;
-
-
-
+       
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Player")
+        PlayerControl player = col.GetComponent<PlayerControl>();
+        if (player != null)
         {
-            GameObject player = col.gameObject;
-            switch (myType)
-            {
-                case PickupType.speed:
-                    player.GetComponent<PlayerStats>().speedMulti = speedMultiValue;
-                    player.GetComponent<PlayerStats>().UpdateSpeed(cooldownValue);
-                    DestroyObject();
-                    break;
+            
+                switch (myType)
+                {
+                    case PickupType.speed:
+                        player.GetComponent<PlayerStats>().speedMulti = speedMultiValue;
+                        player.GetComponent<PlayerStats>().UpdateSpeed(cooldownValue);
+                        DestroyObject();
+                        break;
 
-                case PickupType.colorChange:
-                    player.GetComponent<MeshRenderer>().material.color = Color.red;
-                    break;
-            }
+                    case PickupType.colorChange:
+                        player.GetComponent<MeshRenderer>().material.color = newcol;
+                        DestroyObject();
+                        break;
+                }
+            
         }
+        
     }
     
     private void DestroyObject()

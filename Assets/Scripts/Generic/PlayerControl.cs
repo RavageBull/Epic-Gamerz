@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerControl : MonoBehaviour
 
@@ -16,10 +17,13 @@ public class PlayerControl : MonoBehaviour
     public string F1;
     public string F2;
     public string F3;
+
+    public NavMeshAgent agent;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

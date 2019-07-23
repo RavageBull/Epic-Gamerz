@@ -14,26 +14,32 @@ public class BeamAttack : MonoBehaviour
     private float abilityTime = 3f;  //the amount of time that the beam attack casts for
     [SerializeField]private float castTime = 0.2f;
 
+    PlayerControl PController;
+    //PlayerMovement otherController; //just a reference to the enemy testing player script
+
     void Start()
     {
-
+        PController = GetComponentInParent<PlayerControl>();
+        //otherController = GetComponentInParent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetButtonDown("Fire2") && Time.time >= cooldown)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
-
+        if(PController != null)
         {
+            if (Input.GetButtonDown(PController.F2) && Time.time >= cooldown)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
+            {
 
-            cooldown = Time.time + fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
-            Debug.Log("Cooldown time is " + cooldown);
+                cooldown = Time.time + fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
+                Debug.Log("Cooldown time is " + cooldown);
 
-            Debug.Log("Fired");
-            Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
+                Debug.Log("Fired");
+                Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
 
+            }
         }
+        
 
 
     }

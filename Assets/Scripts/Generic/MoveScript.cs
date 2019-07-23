@@ -5,14 +5,12 @@ using UnityEngine.AI;
 
 public class MoveScript : MonoBehaviour
 {
-    NavMeshAgent agent;
     //private Rigidbody rig;
     public float rotationSpeed = 120f;
     PlayerControl PController;
     void Start()
     {
         PController = GetComponent<PlayerControl>();
-        agent = GetComponent<NavMeshAgent>();
         //rig = GetComponent<Rigidbody>();
     }
 
@@ -28,7 +26,7 @@ public class MoveScript : MonoBehaviour
        
         
         
-        Vector3 movement = new Vector3(hAxis, 0, vAxis) * agent.speed * Time.deltaTime;
+        Vector3 movement = new Vector3(hAxis, 0, vAxis) * PController.agent.speed * Time.deltaTime;
         transform.position += movement;
       
 
