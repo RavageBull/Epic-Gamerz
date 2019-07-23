@@ -23,13 +23,13 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
         switch (MyID)
         {
             case PlayerIDs.P1:
