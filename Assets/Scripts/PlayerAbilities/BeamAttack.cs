@@ -24,51 +24,88 @@ public class BeamAttack : MonoBehaviour
 
     public float damage = 1f;
     public float range = 100f;
-    public Transform firePoint;
+    public Transform firePoint; //what up
 
     [SerializeField]
     [Range(0f, 1.5f)]
     private float fireRate = 5f;
     private float cooldown = 0f;
+    private float abilityTime = 3f;
 
 
-
+    void Start()
+    {
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
-       
-       if (Input.GetButtonDown("Fire1") && Time.time >= cooldown)
-            {
+
+        if (Input.GetButtonDown("Fire2") && Time.time >= cooldown)
+        {
 
             cooldown = Time.time + fireRate;
             Debug.Log("Cooldown time is " + cooldown);
 
-                Debug.Log("Fired");
-                Cast();
+            Debug.Log("Fired");
+            Cast();
 
-            }
+        }
 
-        
+
     }
 
-          
+
     void Cast()
     {
+
         RaycastHit hit;
-        Debug.DrawLine(firePoint.position, (firePoint.forward * range), Color.red, 2f);
+        Debug.DrawLine(firePoint.position, (firePoint.forward * range), Color.red, abilityTime);
 
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
         {
+            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
 
-            Debug.Log("Raycast hit this thing "+hit.transform.name);    
-    
+                Debug.Log("Raycast hit this thing " + hit.transform.name);
+
         }
 
+        StartCoroutine("WaitAndExecute");
+        Invoke("StopExecution", 3f);
     }
 
 
+    void StopExecution()
+    {
+        Debug.Log("Ability pause done");
+        StopCoroutine("WaitAndExecute");
+    }
+
+    IEnumerator WaitAndExecute()
+    {
+        print("Printed after wait time");
+        yield return new WaitForSeconds(abilityTime);
+
+       // StartCoroutine("WaitAndExecute");
+    }
+
+
+    /*private void InvokeRepeating()
+    {
+        InvokeRepeating("Cast", 0f, 0.2f);
+
+        if (Input.GetButtonDown("Jump") && Time.time >= cooldown)
+        {
+            CancelInvoke();
+            cooldown = Time.time + fireRate;
+            Debug.Log("Cancel" );
+            
+        }
+    }*/
+
 }
+
 
 
 

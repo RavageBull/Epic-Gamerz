@@ -22,10 +22,10 @@ public class EnemyStates : MonoBehaviour
 
     public GameObject detectionCol;
     public Transform player; // The target position for the player
-    private float detectedDis;
+    public float detectedDis;
     public float maxDetectDistance = 30f;
     public float attackingDis = 5f;
-    public float coolDownTimer;
+    private float coolDownTimer;
     public float attackCoolDown = 5f;
 
     public List<PlayerMovement> players;
@@ -47,7 +47,6 @@ public class EnemyStates : MonoBehaviour
 	void Update()
     {
         HandleStates();
-                
 	}
 
     public void SetStateToAlert()
@@ -102,10 +101,10 @@ public class EnemyStates : MonoBehaviour
                 break;
 
             case EnemyState.Dead:
-                               
-                Die();
 
                 desCoroutineStarted = false;
+                               
+                Die();
                
                 break;
 
@@ -145,12 +144,12 @@ public class EnemyStates : MonoBehaviour
       
     private void TargetPlayer()
     {
-        if(players.Count == 0)
+        if (players.Count == 0)
         {
             SetStateToPatol();
             return;
         }
-               
+
         //Calculates the distance between the enemy and a random detected player from list of players
         int randIndex = Random.Range(0, players.Count);
         PlayerMovement randPlayer = players[randIndex];
@@ -162,50 +161,59 @@ public class EnemyStates : MonoBehaviour
             agent.SetDestination(attackTarget.transform.position);
 
         }            
-        else if (detectedDis < attackingDis)
+        else if (detectedDis <= attackingDis)
         {
-            attackTarget = randPlayer;
+
+            attackTarget = randPlayer;         
             SetStateToAttack();
-            Debug.Log("State set to attack");
+  
+        }
+        else if (detectedDis > maxDetectDistance)
+        {
+           
+            SetStateToPatol();
+            return;
+    
         }
              
     }
 
     private void AttackPlayer()
     {
-        if(coolDownTimer <= 0)
+                
+        if (detectedDis <= attackingDis)
         {
-            canAttack = true;
-            coolDownTimer = attackCoolDown;
-            Debug.Log(coolDownTimer);
-        }
-        else
-        {
-           //canAttack = false;
-            coolDownTimer -= Time.deltaTime;
-           // Debug.Log(coolDownTimer);
-           //adssda
-        }
-        
-        if (canAttack)
-        {
-            if(detectedDis < attackingDis)
+            agent.SetDestination(attackTarget.transform.position);
+
+            if (coolDownTimer <= 0)
             {
-                Debug.Log("Damage is being dealt");
-                agent.SetDestination(attackTarget.transform.position);
-                attackTarget.GetComponent<Health>().Change(-10);
-                canAttack = false;
-            }
-            else if (detectedDis > attackingDis && detectedDis < maxDetectDistance)
-            {
-                SetStateToAlert();
+                canAttack = true;
+                coolDownTimer = attackCoolDown;
+                Debug.Log(coolDownTimer);
             }
             else
             {
-                SetStateToPatol();
+                coolDownTimer -= Time.deltaTime;
             }
+
+            if (canAttack && players.Count > 0)
+            {
+                attackTarget.GetComponent<Health>().Change(-10);
+                canAttack = false;
+            }
+
+        }
+        else if (detectedDis > attackingDis && detectedDis < maxDetectDistance)
+        {
+            SetStateToAlert();
+            return;
         }
 
+        else
+        {
+            SetStateToPatol();
+            return;
+        }
 
     }
 

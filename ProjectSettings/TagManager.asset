@@ -3,12 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
   - PickUp
->>>>>>> master
   layers:
   - Default
   - TransparentFX
@@ -19,11 +15,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-<<<<<<< HEAD
   - Ground
-=======
-  - 
->>>>>>> master
   - 
   - 
   - 
