@@ -24,7 +24,7 @@ public class BeamAttack : MonoBehaviour
 
     public float damage = 1f;
     public float range = 100f;
-    public Transform firePoint;
+    public Transform firePoint; //what up
 
     [SerializeField]
     [Range(0f, 1.5f)]
