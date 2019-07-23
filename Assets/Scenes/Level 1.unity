@@ -272,13 +272,19 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &66721392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5342490908121820054, guid: a38bf7cbff990d748a754b67c11cafdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 397866872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &154780676
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11948
+  m_Name: pb_Mesh12094
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -32970,6 +32976,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
+--- !u!1 &1536027878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1276359966241014575, guid: a38bf7cbff990d748a754b67c11cafdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 397866872}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1536027879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536027878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777edf5dcb54794d84ba18f86e14cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  range: 50
+  firePoint: {fileID: 66721392}
+  castTime: 0.2
 --- !u!43 &1602415762
 Mesh:
   m_ObjectHideFlags: 0
