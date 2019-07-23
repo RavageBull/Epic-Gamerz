@@ -52,6 +52,7 @@ public class BeamAttack : MonoBehaviour
 
                 Debug.Log("Raycast hit this thing " + hit.transform.name);
 
+            Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
@@ -59,7 +60,7 @@ public class BeamAttack : MonoBehaviour
             }
         }
 
-        Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
+        //Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
         StartCoroutine("WaitAndExecute");
         Invoke("StopExecution", abilityTime); //when abilityTime is reached it calls StopExecution
     }
