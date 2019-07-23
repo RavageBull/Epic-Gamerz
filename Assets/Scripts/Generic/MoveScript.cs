@@ -8,6 +8,9 @@ public class MoveScript : MonoBehaviour
     //private Rigidbody rig;
     public float rotationSpeed = 120f;
     PlayerControl PController;
+
+    float hAxis, vAxis, HCAxis;
+
     void Start()
     {
         PController = GetComponent<PlayerControl>();
@@ -17,20 +20,16 @@ public class MoveScript : MonoBehaviour
 
     void Update()
     {
+        hAxis = Input.GetAxis(PController.hStr);
+  
+        vAxis = Input.GetAxis(PController.vStr);
+        Debug.Log(vAxis);
+        HCAxis = Input.GetAxis(PController.hrStr);
        
-
-
-       float hAxis = Input.GetAxis(PController.hStr);
-       float vAxis = Input.GetAxis(PController.vStr);
-       float HCAxis = Input.GetAxis(PController.hrStr);
-       
-        
-        
         Vector3 movement = new Vector3(hAxis, 0, vAxis) * PController.agent.speed * Time.deltaTime;
         transform.position += movement;
       
-
-       transform.Rotate(0,HCAxis * rotationSpeed * Time.deltaTime, 0);
+        transform.Rotate(0,HCAxis * rotationSpeed * Time.deltaTime, 0);
 
      //  Debug.Log(HCAxis);
 

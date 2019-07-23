@@ -11,23 +11,13 @@ public class PlayerControl : MonoBehaviour
         P1, P2
     }
     public PlayerIDs MyID;
-    public string hStr;
-    public string vStr;
-    public string hrStr;
-    public string F1;
-    public string F2;
-    public string F3;
+
+    [HideInInspector]
+    public string hStr, vStr, hrStr, F1, F2, F3;
 
     public NavMeshAgent agent;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         switch (MyID)

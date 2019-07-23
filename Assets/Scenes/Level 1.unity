@@ -592,6 +592,75 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &335351026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1276359966241014575, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_Name
+      value: Player1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.987
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.6097684
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
 --- !u!1 &373203284
 GameObject:
   m_ObjectHideFlags: 0
@@ -6049,7 +6118,7 @@ PrefabInstance:
     - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7221576
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
@@ -22320,7 +22389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaf1910c35701d43938220300699e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyID: 1
+  MyID: 0
   hStr: 
   vStr: 
   hrStr: 
@@ -22397,6 +22466,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 152.958, y: -142.759, z: -105.493}
+--- !u!1 &1104252956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1276359966241014575, guid: a38bf7cbff990d748a754b67c11cafdf,
+    type: 3}
+  m_PrefabInstance: {fileID: 335351026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104252957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104252956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aaf1910c35701d43938220300699e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyID: 1
+  hStr: 
+  vStr: 
+  hrStr: 
+  F1: 
+  F2: 
+  F3: 
+  agent: {fileID: 0}
 --- !u!1 &1217953137
 GameObject:
   m_ObjectHideFlags: 0
