@@ -31,6 +31,8 @@ public class EnemyStates : MonoBehaviour
     public List<PlayerMovement> players;
     private PlayerMovement attackTarget;
     private EnemyStats enemyStats;
+
+    private PlayerMovement randPlayer;
     
     public bool desCoroutineStarted = false;
     public bool canAttack = false;
@@ -152,7 +154,7 @@ public class EnemyStates : MonoBehaviour
 
         //Calculates the distance between the enemy and a random detected player from list of players
         int randIndex = Random.Range(0, players.Count);
-        PlayerMovement randPlayer = players[randIndex];
+        randPlayer = players[randIndex];
         detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
                       
         if(detectedDis < maxDetectDistance && detectedDis > attackingDis) // if the player is in range the chase player
@@ -180,7 +182,12 @@ public class EnemyStates : MonoBehaviour
 
     private void AttackPlayer()
     {
-                
+        if(randPlayer != null)
+        {
+
+        detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
+        }
+
         if (detectedDis <= attackingDis)
         {
             agent.SetDestination(attackTarget.transform.position);

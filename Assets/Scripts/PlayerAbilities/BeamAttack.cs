@@ -4,52 +4,34 @@ using UnityEngine;
 
 public class BeamAttack : MonoBehaviour
 {
-    //So basicalllyyyyyy, you want to do this particular ability the way the "Raycast Shooting" works
 
-    //You will need to create variables that control: shoot damage, shooting range. (You can play with numbers to make it how you want)
-    //A good video to watch on how to do this is < https://www.youtube.com/watch?v=THnivyG0Mvo >
-    // Brackeys does tutorials for a lot of cool stuff, so you can look up other stuff on his channel as well
+    public float damage = 1f;  //sets the damage of the rays being cast
+    public float range = 50f;  //sets the range of the ability
+    public Transform firePoint;  //empty game object on the player where the raycast comes from
 
-    // After getting raycast shooting working, you want a way to control the "agent" on the player character, for slowing down movement and stuff.
-    // Also take a look at the movement script on the player and see what you can reference in this script and play with.
-    // If this script is going to go straight on the character, then add "using UnityEngine.AI;" at the top. This lets you access the AI functions library, which is mostly everything to do with Nav Mesh.
-    // After adding the library you want to create a variable that is written like this "NavMeshAgent agent;" in you go back onto unity and have a look on the players inspector you will see a component called NavMeshAgent
-    // It has a bunch of different things you can play with. This is useful because you can mess with them in you're code for abilities. For Example, if you want to play with the speed, you reference it by writing "agent.speed".
-    // Here is a link to information about using the Nav Mesh stuff from the unity website < https://docs.unity3d.com/2018.4/Documentation/ScriptReference/AI.NavMesh.html >
-    // also there is a lot of stuff you can look up on there, there are different sections to click on, on the left
-
-    //Just do things step by step and you'll be fine, focus on one thing at a time and google things you are confused about or want to know more about.
-
-    // After you get the basic stuff working, look into particle effects and sounds.
-
-    public float damage = 1f;
-    public float range = 100f;
-    public Transform firePoint; //what up
-
-    [SerializeField]
-    [Range(0f, 1.5f)]
-    private float fireRate = 5f;
-    private float cooldown = 0f;
-    private float abilityTime = 3f;
-
+    private float fireRate = 8f;  //the amount of time in seconds before the ability can be used again
+    private float cooldown = 0f;  //used to create a timer with Time.time and firerate so the ability cannot be used all the time
+    private float abilityTime = 3f;  //the amount of time that the beam attack casts for
+    [SerializeField]private float castTime = 0.2f;
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetButtonDown("Fire2") && Time.time >= cooldown)
+        if (Input.GetButtonDown("Fire2") && Time.time >= cooldown)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
+
         {
 
-            cooldown = Time.time + fireRate;
+            cooldown = Time.time + fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
             Debug.Log("Cooldown time is " + cooldown);
 
             Debug.Log("Fired");
-            Cast();
+            Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
 
         }
 
@@ -60,26 +42,35 @@ public class BeamAttack : MonoBehaviour
     void Cast()
     {
 
-        RaycastHit hit;
-        Debug.DrawLine(firePoint.position, (firePoint.forward * range), Color.red, abilityTime);
+        RaycastHit hit;  //sets up the local variable hit and can tell us what the Raycast has hit
 
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
+        Debug.DrawLine(firePoint.position, (firePoint.forward * range), Color.red, abilityTime);  //draws a red line forwards from the firepoint position on the player
+
+        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range)) //an if statement that tell us if the Raycast has hit an object
         {
             if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
 
                 Debug.Log("Raycast hit this thing " + hit.transform.name);
 
+            Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
+            EnemyStats target = hit.transform.GetComponent<EnemyStats>();
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
         }
 
+        //Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
         StartCoroutine("WaitAndExecute");
-        Invoke("StopExecution", 3f);
+        Invoke("StopExecution", abilityTime); //when abilityTime is reached it calls StopExecution
     }
 
 
     void StopExecution()
     {
         Debug.Log("Ability pause done");
-        StopCoroutine("WaitAndExecute");
+        StopCoroutine("WaitAndExecute");  //stops StartCoroutine
+        CancelInvoke("Cast");  //Stops Cast from repeating once abilityTime is met
     }
 
     IEnumerator WaitAndExecute()
@@ -87,24 +78,12 @@ public class BeamAttack : MonoBehaviour
         print("Printed after wait time");
         yield return new WaitForSeconds(abilityTime);
 
-       // StartCoroutine("WaitAndExecute");
+        // StartCoroutine("WaitAndExecute");
     }
 
 
-    /*private void InvokeRepeating()
-    {
-        InvokeRepeating("Cast", 0f, 0.2f);
-
-        if (Input.GetButtonDown("Jump") && Time.time >= cooldown)
-        {
-            CancelInvoke();
-            cooldown = Time.time + fireRate;
-            Debug.Log("Cancel" );
-            
-        }
-    }*/
-
 }
+
 
 
 

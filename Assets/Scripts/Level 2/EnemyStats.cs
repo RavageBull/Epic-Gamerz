@@ -6,8 +6,8 @@ public class EnemyStats : MonoBehaviour
 {
     private EnemyStates enemyStatesScript;
 
-    public int health = 100;
-    public int damage = 25;
+    public float health = 100;
+    public float damage = 25;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class EnemyStats : MonoBehaviour
         
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         health -= amount;
         if(health < 0)

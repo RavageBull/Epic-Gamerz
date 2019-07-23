@@ -7,12 +7,17 @@ public class PickUp : MonoBehaviour
     public enum PickupType
     {
         speed,
-        colourChange
+        colorChange
     }
     public PickupType myType;
 
     public float speedMultiValue;
     public int cooldownValue = 3;
+
+    public Material matofobject;
+    public Color newcol;
+
+
 
     private void OnTriggerEnter(Collider col)
     {
@@ -24,22 +29,18 @@ public class PickUp : MonoBehaviour
                 case PickupType.speed:
                     player.GetComponent<PlayerStats>().speedMulti = speedMultiValue;
                     player.GetComponent<PlayerStats>().UpdateSpeed(cooldownValue);
+                    DestroyObject();
                     break;
 
-                //case PickupType.colourChange:
-                    //rend.material.color = Color.red;
+                case PickupType.colorChange:
+                    player.GetComponent<MeshRenderer>().material.color = Color.red;
+                    break;
             }
         }
     }
-    // Start is called before the first frame update
-    void Start()
+    
+    private void DestroyObject()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject);
     }
 }
