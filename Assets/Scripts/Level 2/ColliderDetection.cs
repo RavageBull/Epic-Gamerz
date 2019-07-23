@@ -34,7 +34,7 @@ public class ColliderDetection : MonoBehaviour
             return;
         }
 
-        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+        MoveScript playerTwo = other.GetComponent<MoveScript>();
         if (playerTwo != null)
         {
             enemyStatesScript.SetStateToAlert();
