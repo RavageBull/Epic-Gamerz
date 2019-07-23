@@ -34,13 +34,13 @@ public class ColliderDetection : MonoBehaviour
             return;
         }
 
-        MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
-        if (playerTwo != null)
-        {
-            enemyStatesScript.SetStateToAlert();
-            enemyStatesScript.player = playerTwo.transform;
-            //enemyStatesScript.players2.Add(playerTwo);
-        }
+        //MoveScriptUpdated playerTwo = other.GetComponent<MoveScriptUpdated>();
+        //if (playerTwo != null)
+        //{
+        //    enemyStatesScript.SetStateToAlert();
+        //    enemyStatesScript.player = playerTwo.transform;
+        //    //enemyStatesScript.players2.Add(playerTwo);
+        //}
 
     }
 

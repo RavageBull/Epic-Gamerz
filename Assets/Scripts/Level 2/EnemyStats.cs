@@ -21,7 +21,7 @@ public class EnemyStats : MonoBehaviour
         
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
         health -= amount;
         if(health < 0)
