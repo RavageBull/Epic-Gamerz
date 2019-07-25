@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     PlayerControl pController;
+    Health health;
 
     public float speed;
     private float defaultSpeed = 10f;
@@ -13,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     public void Start()
     {
         pController = GetComponent<PlayerControl>();
+        health = GetComponent<Health>();
         speed = pController.agent.speed; // sets the speed to the current player speed
         //speed = defaultSpeed;
     }
@@ -40,6 +42,11 @@ public class PlayerStats : MonoBehaviour
     public void ResetSpeed()
     {
         speed = defaultSpeed;
+    }
+
+    public void TakeDamage(int amount)
+    {
+        health.Change(-amount);
     }
 }
 //hello

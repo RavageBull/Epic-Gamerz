@@ -13,14 +13,13 @@ public class PlayerMovement : MonoBehaviour
     public string F2 = "Fire2P1";
 
     //Camera cam;
-    private Health health;
  
     // Start is called before the first frame update
     void Start()
     {
         playerController = GetComponent<PlayerControl>();
         //cam = Camera.main;
-        health = GetComponent<Health>();
+       
     }
 
     private void Update()
@@ -55,8 +54,5 @@ public class PlayerMovement : MonoBehaviour
         //transform.Rotate(0, Input.GetAxis("HorizontalRotation") * rotationSpeed * Time.deltaTime, 0);
     }
 
-    public void TakeDamage(int amount)
-    {
-        health.Change(-amount);
-    }
+    
 }
