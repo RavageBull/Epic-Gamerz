@@ -13,29 +13,29 @@ public class EnemyStates : MonoBehaviour
         Attacking
     }
 
-    public EnemyState myState;
+    private EnemyState myState;
 	NavMeshAgent agent;
 
-	public float distance = 10;
+	public float patrolDistance = 10;
 	public float delay = 1;
     private int getPositionAttempts = 0;
 
     public GameObject detectionCol;
     public Transform player; // The target position for the player
-    public float detectedDis;
-    public float maxDetectDistance = 30f;
-    public float attackingDis = 5f;
+    [System.NonSerialized] public float detectedDis; // The distance detected between the enemy and the player
+    public float maxDetectDistance = 30f; // The maximum distance the enemy can detect the player
+    public float attackingDis = 5f; // The distance in which the enemy can deal damage to the player
     private float coolDownTimer;
-    public float attackCoolDown = 5f;
+    public float attackCoolDown = 5f; // How long until the enemy can attack again
 
     public List <PlayerControl> players;
     private PlayerControl attackTarget;
     private EnemyStats enemyStats;
 
     private PlayerControl randPlayer;
-    
-    public bool desCoroutineStarted = false;
-    public bool canAttack = false;
+
+    [System.NonSerialized] public bool desCoroutineStarted = false;
+    [System.NonSerialized] public bool canAttack = false;
 
     void Start()  
     {
@@ -242,13 +242,13 @@ public class EnemyStates : MonoBehaviour
             // then continue with code and find a new position
             {
                 enemyIsStuck = false;
-                position = GetRandomPosition(transform.position, distance);
+                position = GetRandomPosition(transform.position, patrolDistance);
 
                 NavMeshHit hit;
 
                 while (!NavMesh.SamplePosition(position, out hit, 2f, NavMesh.AllAreas)) //checking whether the position is on a NavMesh
                 {
-                    position = GetRandomPosition(transform.position, distance);
+                    position = GetRandomPosition(transform.position, patrolDistance);
                     getPositionAttempts++;
                     yield return 0; // if this part doesn't work, then it waits one frame and tries again
                 }

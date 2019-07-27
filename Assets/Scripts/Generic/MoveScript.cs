@@ -23,7 +23,7 @@ public class MoveScript : MonoBehaviour
         hAxis = Input.GetAxis(PController.hStr);
   
         vAxis = Input.GetAxis(PController.vStr);
-        Debug.Log(vAxis);
+        //Debug.Log(vAxis);
         HCAxis = Input.GetAxis(PController.hrStr);
        
         Vector3 movement = new Vector3(hAxis, 0, vAxis) * PController.agent.speed * Time.deltaTime;

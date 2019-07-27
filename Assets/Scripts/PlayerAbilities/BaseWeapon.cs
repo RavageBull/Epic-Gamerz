@@ -11,10 +11,11 @@ public class BaseWeapon : MonoBehaviour
 
     public int damage = 25;
     public float maxDistance = 100f;
+    public Transform firePoint;
 
     private void Start()
     {
-        PController = GetComponentInParent<PlayerControl>();
+        PController = GetComponent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
     }
 
@@ -37,21 +38,19 @@ public class BaseWeapon : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
+        Ray ray = new Ray(firePoint.position, firePoint.forward);        
+        Debug.DrawLine(firePoint.position,(firePoint.forward * maxDistance), Color.red, 5f);
 
-        Ray ray = new Ray(transform.position, transform.forward);
-        Debug.DrawLine(transform.position,(transform.forward * maxDistance), Color.red, 5f);
-
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        if (Physics.Raycast(ray, out hit, maxDistance))        
         {
-           Debug.Log(hit.transform.name);
-
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
+                Debug.Log(hit.transform.name);
                 target.TakeDamage(damage);
             }
             //reduce enemy health
-            
+
         }
 
 

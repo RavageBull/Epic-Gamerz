@@ -23,7 +23,7 @@ public class Health : MonoBehaviour
     public void Change(int amount)
     {
         CurrentHealth += amount;
-        Debug.Log("health is " + CurrentHealth);
+        //Debug.Log("health is " + CurrentHealth);
 
         if(OnHealthChanged != null)
         {

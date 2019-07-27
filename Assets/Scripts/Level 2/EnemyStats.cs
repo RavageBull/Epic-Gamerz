@@ -26,8 +26,12 @@ public class EnemyStats : MonoBehaviour
         health -= amount;
         if(health < 0)
         {
+            Debug.Log("I is dead");
             enemyStatesScript.SetStateToDead();
         }
 
     }
 }
+//public float radius = 0.5f;
+//Debug.DrawLine(firePoint.position, ray.GetPoint(maxDistance), Color.red, 5f);
+//if (Physics.SphereCast(ray, radius, out hit, maxDistance))

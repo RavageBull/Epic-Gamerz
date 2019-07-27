@@ -28,6 +28,7 @@ public class ColliderDetection : MonoBehaviour
         PlayerControl player = other.GetComponent<PlayerControl>();
         if (player != null)
         {
+            Debug.Log("player Detected");
             enemyStatesScript.SetStateToAlert();
             enemyStatesScript.player = player.transform;
             enemyStatesScript.players.Add(player);
