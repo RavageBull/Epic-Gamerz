@@ -11,11 +11,13 @@ public class BaseWeapon : MonoBehaviour
 
     public int damage = 25;
     public float maxDistance = 100f;
+
     private void Start()
     {
         PController = GetComponentInParent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -35,12 +37,13 @@ public class BaseWeapon : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
+
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawLine(transform.position,(transform.forward * maxDistance), Color.red, 5f);
 
         if (Physics.Raycast(ray, out hit, maxDistance))
         {
-          //  Debug.Log(hit.transform.name);
+           Debug.Log(hit.transform.name);
 
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)

@@ -28,11 +28,11 @@ public class EnemyStates : MonoBehaviour
     private float coolDownTimer;
     public float attackCoolDown = 5f;
 
-    public List<PlayerMovement> players;
-    private PlayerMovement attackTarget;
+    public List <PlayerControl> players;
+    private PlayerControl attackTarget;
     private EnemyStats enemyStats;
 
-    private PlayerMovement randPlayer;
+    private PlayerControl randPlayer;
     
     public bool desCoroutineStarted = false;
     public bool canAttack = false;
@@ -184,8 +184,7 @@ public class EnemyStates : MonoBehaviour
     {
         if(randPlayer != null)
         {
-
-        detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
+          detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
         }
 
         if (detectedDis <= attackingDis)
@@ -223,30 +222,8 @@ public class EnemyStates : MonoBehaviour
         }
 
     }
-
-
-
-        //RaycastHit hit;
-      
-        //Debug.DrawLine(transform.position, (transform.forward * distance), Color.red, 5f);
-
-        //if (Physics.Raycast(ray, out hit, distance))
-        //{
-        //    Debug.Log(hit.transform.name);
-
-        //    if (attackTarget != null)
-        //    {
-        //        attackTarget.TakeDamage(enemyStats.damage);
-        //        Debug.Log("Damage dealt");
-        //    }
-
-        //    //if ()
-        //    //{
-
-        //    //}
-        //    // Set back to alert
-        //}
-    
+       
+         
 
     #region Detection
 
