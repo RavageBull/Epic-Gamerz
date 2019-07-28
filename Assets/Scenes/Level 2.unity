@@ -21071,6 +21071,7 @@ MonoBehaviour:
   damage: 100
   range: 50
   firePoint: {fileID: 1931744544}
+  fireRate: 8
   castTime: 0.2
 --- !u!114 &1504893536
 MonoBehaviour:
@@ -23732,7 +23733,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501398, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501384, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
