@@ -21,12 +21,12 @@ public class Spawner : MonoBehaviour
         public string name; // Name because I can
         // public GameObject[] enemy; // Where to spawn
         // public int count; // How many enemies to spawn
-        public WaveSpawn[] waveSpawn;
+        public SpawnType[] spawnType;
         public float delay; // Time between each spawn
     }
 
     [Serializable]
-    public class WaveSpawn
+    public class SpawnType
     {
         public string name;
         public GameObject enemy;
@@ -95,7 +95,7 @@ public class Spawner : MonoBehaviour
     {
         thisWave = new List<GameObject>();
 
-        foreach (WaveSpawn i in _wave.waveSpawn)
+        foreach (SpawnType i in _wave.spawnType)
         {
             for (int j = 0; j < i.count; j++)
             {
