@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     void OnTriggerEnter(Collider other)
     {
-        PlayerControl player = other.GetComponent<PlayerControl>();
+        PlayerStats player = other.GetComponent<PlayerStats>();
         if (player != null)
         {
-
+            player.keyObtained = true;
+            DestroyObject();
         }
+    }
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
     }
 }

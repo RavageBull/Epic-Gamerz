@@ -11,6 +11,8 @@ public class PlayerStats : MonoBehaviour
     private float defaultSpeed = 10f;
     public float speedMulti;
 
+    public bool keyObtained = false;
+
     public void Start()
     {
         pController = GetComponent<PlayerControl>();

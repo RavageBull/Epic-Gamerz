@@ -150,10 +150,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 2
+  m_Height: 4
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &4217106438682956695
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: -3.14
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -264,6 +264,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37104d3fecbc4314db043bce873345eb, type: 3}
