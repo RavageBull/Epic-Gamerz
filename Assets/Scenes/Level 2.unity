@@ -15697,6 +15697,82 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105413593}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1147150199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100018, guid: 5b8f1482ed8d14a43a438785959bf050,
+    type: 3}
+  m_PrefabInstance: {fileID: 673210536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1147150200
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147150199}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1147150201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147150199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc20bff8cc42a134495247bb29e821b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolDistance: 10
+  delay: 1
+  detectionCol: {fileID: 0}
+  player: {fileID: 0}
+  maxDetectDistance: 30
+  attackingDis: 5
+  attackCoolDown: 5
+  players: []
+--- !u!114 &1147150202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147150199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3c77869764ab344a7d7ec233770fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  damage: 25
+--- !u!195 &1147150203
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147150199}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!43 &1156408667
 Mesh:
   m_ObjectHideFlags: 0
@@ -23907,14 +23983,12 @@ PrefabInstance:
         type: 3}
       propertyPath: waves.Array.data[0].waveSpawn.Array.data[1].enemy
       value: 
-      objectReference: {fileID: 3498302526038046311, guid: 688b8015fee40684d8c2d83f9bf3ca68,
-        type: 3}
+      objectReference: {fileID: 100000, guid: 781a2cee7b8187740b8e375b4048712f, type: 3}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[0].waveSpawn.Array.data[2].enemy
       value: 
-      objectReference: {fileID: 1408812950455137968, guid: 2e5f312c7d5cac14bb7ab108cb8343e1,
-        type: 3}
+      objectReference: {fileID: 100018, guid: 5b8f1482ed8d14a43a438785959bf050, type: 3}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[0].waveSpawn.Array.data[2].count
