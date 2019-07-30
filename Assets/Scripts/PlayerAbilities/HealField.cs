@@ -20,6 +20,7 @@ public class HealField : MonoBehaviour
     void Start()
     {
         PController = GetComponentInParent<PlayerControl>();
+        PController = GetComponent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
         playerPos = gameObject.transform;
     }
