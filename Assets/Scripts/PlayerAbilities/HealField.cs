@@ -29,15 +29,19 @@ public class HealField : MonoBehaviour
     {
         if (PController != null)
         {
-            if (Input.GetButtonDown(PController.F3) && Time.time >= cooldown)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
+            if (Input.GetButtonDown(PController.F3) && cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
 
-                cooldown = Time.time + fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
+                cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
                 Debug.Log("Cooldown time is " + cooldown);
 
-                Debug.Log("Fired");
+               // Debug.Log("Fired");
                 Field();  //Field referce to void Cast() where it shoots the raycast for the ability
 
+            }
+            else
+            {
+                cooldown -= Time.deltaTime;
             }
         }
 
@@ -60,7 +64,7 @@ public class HealField : MonoBehaviour
         
     void Destruction()
     {
-        Debug.Log("I am being Detroyed");
+       // Debug.Log("I am being Detroyed");
         Destroy(placedHeal, lifeTime);
     }
 

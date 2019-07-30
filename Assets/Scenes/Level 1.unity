@@ -1234,6 +1234,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 868364092238392205, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: MyID
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
 --- !u!1 &373203284
@@ -6819,6 +6824,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6542252920389211923, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: currentHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6542252920389211923, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: myHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3689252110089910634, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: lifeTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642655949883277590, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: castTime
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
 --- !u!4 &401290181 stripped
@@ -6844,7 +6869,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &433269407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22946,36 +22971,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609553234}
   m_CullTransparentMesh: 0
---- !u!1 &706406967
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 706406968}
-  m_Layer: 0
-  m_Name: ShootPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &706406968
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706406967}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1044406153}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &741435219
 GameObject:
   m_ObjectHideFlags: 0
@@ -23931,69 +23926,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1044406145 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1276359966241014575, guid: a38bf7cbff990d748a754b67c11cafdf,
-    type: 3}
-  m_PrefabInstance: {fileID: 397866872}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1044406153 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2421649797056431184, guid: a38bf7cbff990d748a754b67c11cafdf,
-    type: 3}
-  m_PrefabInstance: {fileID: 397866872}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1044406154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044406145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aaf1910c35701d43938220300699e04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyID: 0
-  hStr: 
-  vStr: 
-  hrStr: 
-  F1: 
-  F2: 
-  F3: 
-  agent: {fileID: 0}
---- !u!114 &1044406155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044406145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c777edf5dcb54794d84ba18f86e14cca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  range: 50
-  firePoint: {fileID: 706406968}
-  castTime: 0.1
---- !u!114 &1044406156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044406145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b42e9fa99afeacf4eb97b7f3e5f42288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 25
-  maxDistance: 100
-  firePoint: {fileID: 706406967}
 --- !u!1 &1064685533
 GameObject:
   m_ObjectHideFlags: 0
@@ -44820,6 +44752,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 932027483328501398, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 932027483328501384, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45391,6 +45328,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnArea(1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9117514207828870020, guid: 93110dda413492942b264ac87f38989b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1602415762}
+    - target: {fileID: 9117514207828870040, guid: 93110dda413492942b264ac87f38989b,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1602415762}
     - target: {fileID: 9117514207828870041, guid: 93110dda413492942b264ac87f38989b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45446,15 +45393,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9117514207828870020, guid: 93110dda413492942b264ac87f38989b,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1602415762}
-    - target: {fileID: 9117514207828870040, guid: 93110dda413492942b264ac87f38989b,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1602415762}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93110dda413492942b264ac87f38989b, type: 3}

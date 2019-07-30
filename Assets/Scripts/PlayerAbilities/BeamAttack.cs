@@ -28,15 +28,19 @@ public class BeamAttack : MonoBehaviour
     {
         if(PController != null)
         {
-            if (Input.GetButtonDown(PController.F2) && Time.time >= cooldown)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
+            if (Input.GetButtonDown(PController.F2) && cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
 
-                cooldown = Time.time + fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
+                cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
                 Debug.Log("Cooldown time is " + cooldown);
 
                 Debug.Log("Fired");
                 Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
 
+            }
+            else
+            {
+                cooldown -= Time.deltaTime;
             }
         }
         

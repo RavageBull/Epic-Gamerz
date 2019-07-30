@@ -6,23 +6,30 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int maxhealth = 100; //Maximum health of player
+    public int myHealth;
 
     public int CurrentHealth { get; private set; }
-    public int currentHealth; //To display current health on unity
 
+    
     public event Action OnDeath; // On death event
     public event Action<int> OnHealthChanged; // On health changed event
     
     private void Start()
     {
         CurrentHealth = maxhealth;
-        currentHealth = CurrentHealth;
+    }
+
+    private void Update()
+    {
+        myHealth = CurrentHealth;
     }
 
     // Change the health amount
     public void Change(int amount)
     {
-        CurrentHealth += amount;
+        
+         CurrentHealth += amount;
+                
         //Debug.Log("health is " + CurrentHealth);
 
         if(OnHealthChanged != null)
@@ -35,9 +42,7 @@ public class Health : MonoBehaviour
 
     // Keep health within values
     private void ValidateHealth()
-    {
-        currentHealth = CurrentHealth; //Makes the current health values the same
-
+    {       
         //Player dies
         if (CurrentHealth <= 0)
         {
@@ -46,7 +51,7 @@ public class Health : MonoBehaviour
         }
 
         //if current health goes over max health, reset it to the max
-        if (CurrentHealth > maxhealth)
+        if (CurrentHealth >= maxhealth)
         {
             CurrentHealth = maxhealth;
         }

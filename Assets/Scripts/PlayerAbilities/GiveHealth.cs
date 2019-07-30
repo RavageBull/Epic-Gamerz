@@ -12,7 +12,7 @@ public class GiveHealth : MonoBehaviour
     private float delay = 0f;
     private float delayReset = 2f;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         player = other.GetComponent<PlayerControl>();
         if (player != null)
