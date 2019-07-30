@@ -50,7 +50,8 @@ public class BeamAttack : MonoBehaviour
 
         RaycastHit hit;  //sets up the local variable hit and can tell us what the Raycast has hit
 
-        Debug.DrawLine(firePoint.position, (firePoint.forward * range), Color.red, abilityTime);  //draws a red line forwards from the firepoint position on the player
+        Debug.DrawLine(firePoint.position, transform.position + (firePoint.forward * range), Color.red, abilityTime);  //draws a red line forwards from the firepoint position on the player
+        Debug.Log(firePoint.position + " : " + firePoint.forward * range);
 
         if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range)) //an if statement that tell us if the Raycast has hit an object
         {
