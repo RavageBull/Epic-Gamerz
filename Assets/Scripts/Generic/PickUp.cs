@@ -13,10 +13,20 @@ public class PickUp : MonoBehaviour
 
     public float speedMultiValue;
     public int cooldownValue = 3;
+    public bool spawned = false;
 
     //public Material matofobject;
     public Color newcol;
-       
+
+    private void Update()
+    {
+        if (spawned)
+        {
+            SetColour();
+        }
+        
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         PlayerControl player = col.GetComponent<PlayerControl>();
@@ -27,7 +37,7 @@ public class PickUp : MonoBehaviour
                 {
                     case PickupType.speed:
                         player.GetComponent<PlayerStats>().speedMulti = speedMultiValue;
-                        player.GetComponent<PlayerStats>().UpdateSpeed(cooldownValue);
+                        player.GetComponent<PlayerStats>().UpdateSpeed(cooldownValue);                                          
                         DestroyObject();
                         break;
 
@@ -40,9 +50,21 @@ public class PickUp : MonoBehaviour
         }
         
     }
-    
+
+    void SetColour()
+    {
+        switch (myType)
+        {
+            case PickupType.speed:
+                GetComponent<MeshRenderer>().material.color = Color.red;
+                break;
+        }
+    }
+
+
     private void DestroyObject()
     {
         Destroy(gameObject);
+        spawned = false;
     }
 }
