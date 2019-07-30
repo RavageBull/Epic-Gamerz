@@ -11,7 +11,7 @@ public class BaseWeapon : MonoBehaviour
 
     public int damage = 25;
     public float maxDistance = 100f;
-    public Transform firePoint;
+    public GameObject firePoint;
 
     private void Start()
     {
@@ -38,8 +38,8 @@ public class BaseWeapon : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
-        Ray ray = new Ray(firePoint.position, firePoint.forward);        
-        Debug.DrawLine(firePoint.position,(firePoint.forward * maxDistance), Color.red, 5f);
+        Ray ray = new Ray(firePoint.transform.position, firePoint.transform.forward);        
+        Debug.DrawLine(firePoint.transform.position, transform.position + (firePoint.transform.forward * maxDistance), Color.red, 5f);
 
         if (Physics.Raycast(ray, out hit, maxDistance))        
         {
