@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class BeamAttack : MonoBehaviour
 {
+    public GameObject currentHitObject;
 
     public float damage = 1f;  //sets the damage of the rays being cast
-    public float range = 50f;  //sets the range of the ability
-    public Transform firePoint;  //empty game object on the player where the raycast comes from
+    public float maxDistance = 50f;  //sets the range of the ability
+    public float sphereRadius;
+    public LayerMask layerMask;
+    public float castTime = 0.1f;
 
     private float fireRate = 8f;  //the amount of time in seconds before the ability can be used again
     private float cooldown = 0f;  //used to create a timer with Time.time and firerate so the ability cannot be used all the time
     private float abilityTime = 3f;  //the amount of time that the beam attack casts for
-    [SerializeField]private float castTime = 0.2f;
+
+    public Vector3 firePoint;
+    private Vector3 direction;
+
+    private float currentHitDistance;
 
     PlayerControl PController;
     //PlayerMovement otherController; //just a reference to the enemy testing player script
@@ -51,27 +58,23 @@ public class BeamAttack : MonoBehaviour
 
     void Cast()
     {
-
-        RaycastHit hit;  //sets up the local variable hit and can tell us what the Raycast has hit
-
-        Debug.DrawLine(firePoint.position, transform.position + (firePoint.forward * range), Color.red, abilityTime);  //draws a red line forwards from the firepoint position on the player
-        Debug.Log(firePoint.position + " : " + firePoint.forward * range);
-
-        if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range)) //an if statement that tell us if the Raycast has hit an object
+        firePoint = transform.position;
+        direction = transform.forward;
+        RaycastHit hit;
+        if (Physics.SphereCast(firePoint, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
-            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, range))
+            currentHitObject = hit.transform.gameObject;
+            currentHitDistance = hit.distance;
 
-                Debug.Log("Raycast hit this thing " + hit.transform.name);
-
-            Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
+            Invoke("Cast", castTime);  //starts Cast again based on the public float castTime
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
+                Debug.Log(hit.transform.name);
                 target.TakeDamage(damage);
             }
         }
-
-        //Invoke("Cast", castTime);  //starts Cast again every 0.2 seconds
+        
         StartCoroutine("WaitAndExecute");
         Invoke("StopExecution", abilityTime); //when abilityTime is reached it calls StopExecution
     }
@@ -90,6 +93,13 @@ public class BeamAttack : MonoBehaviour
         yield return new WaitForSeconds(abilityTime);
 
         // StartCoroutine("WaitAndExecute");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Debug.DrawLine(firePoint, firePoint + direction * currentHitDistance);
+        Gizmos.DrawWireSphere(firePoint + direction * currentHitDistance, sphereRadius);
     }
 
 

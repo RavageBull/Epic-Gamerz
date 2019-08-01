@@ -9,9 +9,17 @@ public class BaseWeapon : MonoBehaviour
     PlayerControl PController;
     //PlayerMovement otherController; //just a reference to the enemy testing player script
 
+    public GameObject currentHitObject;
+
     public int damage = 25;
     public float maxDistance = 100f;
-    public GameObject firePoint;
+    public float sphereRadius;
+    public LayerMask layerMask;
+
+    public Vector3 firePoint;
+    private Vector3 direction;
+
+    private float currentHitDistance;
 
     private void Start()
     {
@@ -22,62 +30,40 @@ public class BaseWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Moves Fowards based on speed
-        //  GetComponent<Rigidbody>().velocity = transform.forward * speed;
 
       if(PController != null)
-        {
+      {
             if (Input.GetButtonDown(PController.F1))
             {
                 Shoot();
             }
-        }
+      }
         
     }
 
     void Shoot()
     {
+        firePoint = transform.position;
+        direction = transform.forward;
         RaycastHit hit;
-        Ray ray = new Ray(firePoint.transform.position, firePoint.transform.forward);        
-        Debug.DrawLine(firePoint.transform.position, transform.position + (firePoint.transform.forward * maxDistance), Color.red, 5f);
-
-        if (Physics.Raycast(ray, out hit, maxDistance))        
+        if (Physics.SphereCast(firePoint, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
+            currentHitObject = hit.transform.gameObject;
+            currentHitDistance = hit.distance;
+
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
                 Debug.Log(hit.transform.name);
                 target.TakeDamage(damage);
             }
-            //reduce enemy health
-
         }
-
-
-        // Destroy(this.gameObject);
-        //destroy this bullet
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-
-    //    //if not player or projectile
-    //    if (other.tag != "Player" && other.tag != "Projectile")
-    //    {
-    //        if (other.tag == "Enemy")
-
-    //        {
-    //            RaycastHit hit;
-    //            Ray ray = new Ray(transform.position, transform.forward);
-    //            if (Physics.Raycast(ray, out hit, maxDistance)) ;
-
-    //            hit.transform.GetComponent<HealthScript>().RemoveHealth(enemyDamage);
-    //            //reduce enemy health
-
-    //            Destroy(this.gameObject);
-    //            //destroy this bullet
-    //        }
-    //    }
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Debug.DrawLine(firePoint, firePoint + direction * currentHitDistance);
+        Gizmos.DrawWireSphere(firePoint + direction * currentHitDistance, sphereRadius);
+    }
 }
-
