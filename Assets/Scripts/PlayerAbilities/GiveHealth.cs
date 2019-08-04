@@ -29,7 +29,7 @@ public class GiveHealth : MonoBehaviour
             playerHealth.Change(healthGiven);
             Debug.Log(healthGiven + "  health has been given");
             delay = delayReset;
-            Debug.Log("Delay has been Reset");
+           // Debug.Log("Delay has been Reset");
         }
         else
         {

@@ -13,19 +13,17 @@ public class PickUp : MonoBehaviour
 
     public float speedMultiValue;
     public int cooldownValue = 3;
-    public bool spawned = false;
+    public static bool spawned = false;
 
     //public Material matofobject;
     public Color newcol;
 
-    private void Update()
+    private void Start()
     {
-        if (spawned)
-        {
-            SetColour();
-        }
-        
+        spawned = true;
+        SetColour();
     }
+
 
     private void OnTriggerEnter(Collider col)
     {
@@ -56,8 +54,13 @@ public class PickUp : MonoBehaviour
         switch (myType)
         {
             case PickupType.speed:
-                GetComponent<MeshRenderer>().material.color = Color.red;
+                GetComponentInChildren<MeshRenderer>().material.color = Color.red;
                 break;
+
+            case PickupType.colorChange:
+                GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+                break;
+
         }
     }
 

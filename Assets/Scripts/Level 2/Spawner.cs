@@ -19,11 +19,12 @@ public class Spawner : MonoBehaviour
     public class Wave
     {
         public string name; // Name because I can
-        // public GameObject[] enemy; // Where to spawn
-        // public int count; // How many enemies to spawn
         public SpawnType[] spawnType;
         public float delay; // Time between each spawn
     }
+
+    public Wave[] waves; // List of waves to iterate through
+    private int waveIndex = 0; // Wave Index
 
     [Serializable]
     public class SpawnType
@@ -31,13 +32,9 @@ public class Spawner : MonoBehaviour
         public string name;
         public GameObject enemy;
         public int count;
-        [HideInInspector] public bool hasSpawned;
     }
 
-    public List<GameObject> thisWave = new List<GameObject>();
-
-    public Wave[] waves; // List of waves to iterate through
-    private int waveIndex = 0; // Wave Index
+    public List<GameObject> thisWave = new List<GameObject>(); //Keeping track of what is currently spawning
 
     public Transform[] spawnPoints; // Where to spawn
 
@@ -56,7 +53,6 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (state == SpawnState.Waiting)
@@ -91,6 +87,37 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private bool EnemyIsAlive()
+    {
+        searchCountdown -= Time.deltaTime;
+        if (searchCountdown <= 0)
+        {
+            searchCountdown = 1f;
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void WaveCompleted()
+    {
+        state = SpawnState.Counting;
+        waveCountdown = timeBetweenWaves;
+
+        if (waveIndex > waves.Length)
+        {
+            waveIndex = 0;
+            //currently resets wave loop, but this is where we would trigger end level
+        }
+        else
+        {
+            waveIndex++;
+        }
+    }
+
     private void InitializeWave(Wave _wave)
     {
         thisWave = new List<GameObject>();
@@ -118,38 +145,7 @@ public class Spawner : MonoBehaviour
 
         //Debug.Log("List Shuffled");
     }
-
-    private void WaveCompleted()
-    {        
-        state = SpawnState.Counting;
-        waveCountdown = timeBetweenWaves;
-
-        if (waveIndex > waves.Length)
-        {
-            waveIndex = 0;            
-            //currently resets wave loop, but this is where we would trigger end level
-        }
-        else
-        {
-            waveIndex++;
-        }
-    }
-
-    private bool EnemyIsAlive()
-    {
-        searchCountdown -= Time.deltaTime;
-        if (searchCountdown <= 0)
-        {
-            searchCountdown = 1f;
-            if (GameObject.FindGameObjectsWithTag ("Enemy").Length == 0)
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
+               
     private IEnumerator SpawnWave(float delay)
     {        
         state = SpawnState.Spawning;

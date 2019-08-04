@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealField : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class HealField : MonoBehaviour
 
     public float lifeTime = 5f;
 
+    public Text timer;
+    public Slider clock;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +27,10 @@ public class HealField : MonoBehaviour
         PController = GetComponent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
         playerPos = gameObject.transform;
+
+        timer.text = cooldown.ToString("0");
+        clock.maxValue = fireRate;
+        clock.value = cooldown;
     }
 
     // Update is called once per frame
@@ -30,18 +38,27 @@ public class HealField : MonoBehaviour
     {
         if (PController != null)
         {
-            if (Input.GetButtonDown(PController.F3) && cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
+            if (cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
+                timer.color = Color.blue;
+                timer.text = ("X");
 
-                cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
-                Debug.Log("Cooldown time is " + cooldown);
+                if (Input.GetButtonDown(PController.F3))
+                {
+                    timer.color = Color.white;
+                    cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
+                   // Debug.Log("Cooldown time is " + cooldown);
 
-               // Debug.Log("Fired");
-                Field();  //Field referce to void Cast() where it shoots the raycast for the ability
+                   // Debug.Log("Fired");
+                    Field();  //Field referce to void Cast() where it shoots the raycast for the ability
+
+                }
 
             }
             else
             {
+                timer.text = cooldown.ToString("0");
+                clock.value = cooldown;
                 cooldown -= Time.deltaTime;
             }
         }

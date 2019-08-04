@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+    public int keyNum = 1;
     
     void OnTriggerEnter(Collider other)
     {

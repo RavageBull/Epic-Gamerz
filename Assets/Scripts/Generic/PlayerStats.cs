@@ -8,17 +8,17 @@ public class PlayerStats : MonoBehaviour
     Health health;
 
     public float speed;
-    private float defaultSpeed = 10f;
+    public float defaultSpeed;
     public float speedMulti;
 
-    public bool keyObtained = false;
+    [System.NonSerialized]public bool keyObtained = false;
 
     public void Start()
     {
         pController = GetComponent<PlayerControl>();
         health = GetComponent<Health>();
-        speed = pController.agent.speed; // sets the speed to the current player speed
-        //speed = defaultSpeed;
+        defaultSpeed = pController.agent.speed; // sets the speed to the current player speed
+        speed = defaultSpeed;
     }
 
     public void Update()
@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
     public void UpdateSpeed(int cooldown)
     {
         speed = defaultSpeed * speedMulti;
-        pController.agent.speed = speed; // sets the current player speed to the speed of this script
+        pController.agent.speed = speed; // sets the current player speed to the speed variable on this script
         StartCoroutine(SpeedCooldown(cooldown));
     }
 

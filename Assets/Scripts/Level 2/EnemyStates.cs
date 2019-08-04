@@ -195,7 +195,7 @@ public class EnemyStates : MonoBehaviour
             {
                 canAttack = true;
                 coolDownTimer = attackCoolDown;
-                Debug.Log(coolDownTimer);
+               // Debug.Log(coolDownTimer);
             }
             else
             {

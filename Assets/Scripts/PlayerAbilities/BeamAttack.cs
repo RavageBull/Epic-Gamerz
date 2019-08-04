@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BeamAttack : MonoBehaviour
 {
@@ -24,34 +25,52 @@ public class BeamAttack : MonoBehaviour
     PlayerControl PController;
     //PlayerMovement otherController; //just a reference to the enemy testing player script
 
+   // public Slider abilitySlider;
+    public Text timer;
+    public Slider clock;
+
     void Start()
     {
         PController = GetComponentInParent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
+        cooldown = fireRate;
+
+        timer.text = cooldown.ToString("0");
+        clock.maxValue = fireRate;
+        clock.value = cooldown;
+
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if(PController != null)
+    {        
+        if (PController != null)
         {
-            if (Input.GetButtonDown(PController.F2) && cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
+            if (cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
+                timer.color = Color.red;
+                timer.text = ("B");
 
-                cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
-                Debug.Log("Cooldown time is " + cooldown);
+                if (Input.GetButtonDown(PController.F2))
+                {
+                    timer.color = Color.white;
+                    cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
+                    Debug.Log("Cooldown time is " + cooldown);
 
-                Debug.Log("Fired");
-                Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
+                    //Debug.Log("Fired");
+                    Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
 
+                }
             }
             else
-            {
+            {                
+                timer.text = cooldown.ToString("0");
+                clock.value = cooldown;
                 cooldown -= Time.deltaTime;
             }
         }
-        
 
+        
 
     }
 
@@ -82,14 +101,14 @@ public class BeamAttack : MonoBehaviour
 
     void StopExecution()
     {
-        Debug.Log("Ability pause done");
+        //Debug.Log("Ability pause done");
         StopCoroutine("WaitAndExecute");  //stops StartCoroutine
         CancelInvoke("Cast");  //Stops Cast from repeating once abilityTime is met
     }
 
     IEnumerator WaitAndExecute()
     {
-        print("Printed after wait time");
+        //print("Printed after wait time");
         yield return new WaitForSeconds(abilityTime);
 
         // StartCoroutine("WaitAndExecute");

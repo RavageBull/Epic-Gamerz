@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -13,15 +14,21 @@ public class Health : MonoBehaviour
     
     public event Action OnDeath; // On death event
     public event Action<int> OnHealthChanged; // On health changed event
+
+    public Slider healthbar;
     
     private void Start()
     {
         CurrentHealth = maxhealth;
+        healthbar.maxValue = maxhealth;
+        healthbar.value = CurrentHealth;
     }
 
     private void Update()
     {
         myHealth = CurrentHealth;
+        healthbar.maxValue = maxhealth;
+        healthbar.value = CurrentHealth;
     }
 
     // Change the health amount
@@ -55,6 +62,9 @@ public class Health : MonoBehaviour
         {
             CurrentHealth = maxhealth;
         }
+
+
+        healthbar.value = CurrentHealth;
     }
 
     // Do death stuff
@@ -67,7 +77,7 @@ public class Health : MonoBehaviour
         }
 
         Debug.Log("Player died " + CurrentHealth);
-        GetComponent<MeshRenderer>().material.color = Color.red;
+       // GetComponent<MeshRenderer>().material.color = Color.red;
 
         transform.position = transform.position; //Needs fixing for task 1
 

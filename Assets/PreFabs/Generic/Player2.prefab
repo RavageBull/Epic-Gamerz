@@ -44,9 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42e9fa99afeacf4eb97b7f3e5f42288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHitObject: {fileID: 0}
   damage: 25
   maxDistance: 100
-  firePoint: {fileID: 0}
+  sphereRadius: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  firePoint: {x: 0, y: 0, z: 0}
 --- !u!54 &1043088351238234588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -73,20 +78,17 @@ GameObject:
   m_Component:
   - component: {fileID: 3450503868986931067}
   - component: {fileID: 6398973303494327277}
-  - component: {fileID: 4749061977089981421}
   - component: {fileID: 6305647788631538175}
   - component: {fileID: 8441122393017525678}
-  - component: {fileID: 3257098121716169306}
-  - component: {fileID: 1043088351720675730}
   - component: {fileID: 1043088351720675728}
+  - component: {fileID: 1043088351720675730}
   - component: {fileID: 176986045050738854}
-  - component: {fileID: 6115613439701359316}
-  - component: {fileID: 3558628711735801455}
+  - component: {fileID: 3257098121716169306}
   - component: {fileID: 6103234058306593848}
+  - component: {fileID: 3558628711735801455}
   - component: {fileID: 8207018565424032188}
   - component: {fileID: 7235560894538723901}
   - component: {fileID: 4416641911987980865}
-  - component: {fileID: 1043088350867435460}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -118,43 +120,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2292123252483616772}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &4749061977089981421
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292123252483616772}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 76492233731e0684e9580cb7d4e767c3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!136 &6305647788631538175
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -187,35 +152,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3257098121716169306
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292123252483616772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f46afe93e05b044198247b88220ed6b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 120
---- !u!54 &1043088351720675730
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292123252483616772}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!195 &1043088351720675728
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -238,6 +174,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &1043088351720675730
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292123252483616772}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &176986045050738854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +210,7 @@ MonoBehaviour:
   F2: 
   F3: 
   agent: {fileID: 0}
---- !u!114 &6115613439701359316
+--- !u!114 &3257098121716169306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,20 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 120
---- !u!114 &3558628711735801455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292123252483616772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eb680de72e2b584fb4150234c0d31d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  speedMulti: 0
 --- !u!114 &6103234058306593848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +237,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxhealth: 100
   myHealth: 0
+  healthbar: {fileID: 0}
+--- !u!114 &3558628711735801455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292123252483616772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb680de72e2b584fb4150234c0d31d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  defaultSpeed: 0
+  speedMulti: 0
 --- !u!114 &8207018565424032188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,9 +265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b42e9fa99afeacf4eb97b7f3e5f42288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHitObject: {fileID: 0}
   damage: 25
   maxDistance: 100
-  firePoint: {fileID: 1043088351238234591}
+  sphereRadius: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  firePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &7235560894538723901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,10 +285,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c777edf5dcb54794d84ba18f86e14cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHitObject: {fileID: 0}
   damage: 1
-  range: 50
-  firePoint: {fileID: 1043088351238234590}
+  maxDistance: 50
+  sphereRadius: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   castTime: 0.2
+  firePoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4416641911987980865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,26 +310,6 @@ MonoBehaviour:
   healObject: {fileID: 8517325773403788082, guid: 96ba5471d62dad34a8555fa82c05fb3e,
     type: 3}
   lifeTime: 5
---- !u!114 &1043088350867435460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2292123252483616772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aaf1910c35701d43938220300699e04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyID: 1
-  hStr: 
-  vStr: 
-  hrStr: 
-  F1: 
-  F2: 
-  F3: 
-  agent: {fileID: 0}
 --- !u!1001 &7730946940340606448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ed54f8f2d5d0894dbe42a147bd0551d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.29
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ed54f8f2d5d0894dbe42a147bd0551d, type: 3}
       propertyPath: m_LocalPosition.z
