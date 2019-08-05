@@ -7,7 +7,10 @@ public class PickUp : MonoBehaviour
     public enum PickupType
     {
         speed,
-        colorChange
+        colorChange,
+        maxHealth,
+        health,
+        damage
     }
     public PickupType myType;
 
@@ -41,6 +44,21 @@ public class PickUp : MonoBehaviour
 
                     case PickupType.colorChange:
                         player.GetComponent<MeshRenderer>().material.color = newcol;
+                        DestroyObject();
+                        break;
+
+                    case PickupType.maxHealth:
+                        player.GetComponent<Health>().maxhealth += 25;
+                        DestroyObject();
+                        break;
+
+                    case PickupType.health:
+                        player.GetComponent<Health>().myHealth += 25;
+                        DestroyObject();
+                        break;
+
+                    case PickupType.damage:
+                        player.GetComponent<BeamAttack>().damage *= 2;
                         DestroyObject();
                         break;
                 }
