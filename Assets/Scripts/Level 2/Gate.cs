@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    private Vector3 yPos;
-    public int gateNum = 1;
-    public GameObject key;
-    public GameObject spawnedKey;
- 
+     
     private void OnTriggerStay(Collider other)
     {
         PlayerStats player = other.GetComponent<PlayerStats>();
@@ -16,13 +12,8 @@ public class Gate : MonoBehaviour
         {
             if (player.keyObtained == true)
             {
-                Key key = GetComponent<Key>();
-                if (gateNum == key.keyNum)
-                {
-                    Debug.Log("I can be opened");
-                }
-               
-//                DestroyObject();
+                player.keyObtained = false;              
+                DestroyObject();
 
             }
         }

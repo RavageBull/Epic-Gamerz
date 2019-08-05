@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     public float defaultSpeed;
     public float speedMulti;
 
-    [System.NonSerialized]public bool keyObtained = false;
+    [System.NonSerialized] public bool keyObtained = false;
 
     public void Start()
     {
