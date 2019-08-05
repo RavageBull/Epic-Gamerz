@@ -6,7 +6,7 @@ using UnityEngine;
 public class MoveScript : MonoBehaviour
 {
     //private Rigidbody rig;
-    public float rotationSpeed = 120f;
+    public float rotationSpeed = 180f;
     PlayerControl PController;
 
     float hAxis, vAxis, HCAxis;

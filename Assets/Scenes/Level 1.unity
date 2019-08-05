@@ -6961,7 +6961,7 @@ PrefabInstance:
     - target: {fileID: 3689252110089910634, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
       propertyPath: lifeTime
-      value: 15
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3689252110089910634, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
@@ -6976,7 +6976,7 @@ PrefabInstance:
     - target: {fileID: 9195475998207056535, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
       propertyPath: damage
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 9195475998207056535, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
@@ -6987,6 +6987,11 @@ PrefabInstance:
         type: 3}
       propertyPath: sphereRadius
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542917680572811633, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
@@ -44385,7 +44390,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[1].spawnType.Array.data[0].count
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44401,7 +44406,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[1].spawnType.Array.data[1].count
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44433,7 +44438,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[2].spawnType.Array.data[0].count
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44449,7 +44454,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[2].spawnType.Array.data[1].count
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44465,7 +44470,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[2].spawnType.Array.data[2].count
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44486,7 +44491,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[3].spawnType.Array.data[0].count
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44502,7 +44507,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[3].spawnType.Array.data[1].count
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44518,7 +44523,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[3].spawnType.Array.data[2].count
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44544,7 +44549,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[4].spawnType.Array.data[0].count
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44560,7 +44565,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[4].spawnType.Array.data[1].count
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -44576,7 +44581,7 @@ PrefabInstance:
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
       propertyPath: waves.Array.data[4].spawnType.Array.data[2].count
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 932027483328501399, guid: a8f9e58ed3daf5343be570fc49cfc1f8,
         type: 3}
@@ -45247,6 +45252,26 @@ PrefabInstance:
       propertyPath: clock
       value: 
       objectReference: {fileID: 6439756}
+    - target: {fileID: 7235560894538723901, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235560894538723901, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: sphereRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235560894538723901, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: castTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7235560894538723901, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4416641911987980865, guid: 73a7be293b4c6114fa7be14e15eebd11,
         type: 3}
       propertyPath: timer
@@ -45257,6 +45282,31 @@ PrefabInstance:
       propertyPath: clock
       value: 
       objectReference: {fileID: 602079079}
+    - target: {fileID: 4416641911987980865, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: lifeTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257098121716169306, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207018565424032188, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207018565424032188, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: sphereRadius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207018565424032188, guid: 73a7be293b4c6114fa7be14e15eebd11,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 807
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73a7be293b4c6114fa7be14e15eebd11, type: 3}
 --- !u!1001 &9117514208178676168
