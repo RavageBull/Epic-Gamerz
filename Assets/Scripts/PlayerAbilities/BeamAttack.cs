@@ -32,12 +32,15 @@ public class BeamAttack : MonoBehaviour
    // public Slider abilitySlider;
     public Text timer;
     public Image clock;
+    public GameObject damageUI;
 
+    public GameObject abiltyText;
+  
     void Start()
     {
         PController = GetComponentInParent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
-        cooldown = fireRate;
+        //cooldown = fireRate;
 
         timer.text = cooldown.ToString("0");
         
@@ -54,11 +57,15 @@ public class BeamAttack : MonoBehaviour
         {
             if (cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
-                timer.color = Color.red;
-                timer.text = ("B");
+                timer.color = Color.white;
+                timer.text = ("B");                             
 
                 if (Input.GetButtonDown(PController.F2))
                 {
+                    abiltyText.SetActive(true);
+                    abiltyText.GetComponentInChildren<Text>().text = ("Beam Attack");
+                    abiltyText.GetComponentInChildren<Text>().color = Color.red;
+
                     timer.color = Color.white;
                     cooldown = fireRate;  //the cooldown equals the timer which counts up, and if it has been the amount of the firerates seconds then itll Cast
                     Debug.Log("Cooldown time is " + cooldown);
@@ -69,7 +76,7 @@ public class BeamAttack : MonoBehaviour
                 }
             }
             else
-            {                
+            {
                 timer.text = cooldown.ToString("0");
                 clock.fillAmount = cooldown / fireRate;
                 if(clock.fillAmount <= 0.01f)
@@ -115,6 +122,8 @@ public class BeamAttack : MonoBehaviour
         //Debug.Log("Ability pause done");
         StopCoroutine("WaitAndExecute");  //stops StartCoroutine
         CancelInvoke("Cast");  //Stops Cast from repeating once abilityTime is met
+
+        abiltyText.SetActive(false);
     }
 
     IEnumerator WaitAndExecute()
@@ -137,6 +146,7 @@ public class BeamAttack : MonoBehaviour
         damage = defaultDamage * damageMulti;
         Debug.Log("damage updated " + damage);
         StartCoroutine(DamageCooldown(cooldown));
+        damageUI.SetActive(true);
     }
 
     IEnumerator DamageCooldown(int waitTime)
@@ -148,6 +158,7 @@ public class BeamAttack : MonoBehaviour
     public void ResetDamage()
     {
         damage = defaultDamage;
+        damageUI.SetActive(false);
     }
 }
 

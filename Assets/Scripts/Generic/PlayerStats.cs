@@ -11,6 +11,8 @@ public class PlayerStats : MonoBehaviour
     public float defaultSpeed;
     public float speedMulti;
 
+    public GameObject speedUI;
+
     [System.NonSerialized] public bool keyObtained = false;
 
     public void Start()
@@ -29,6 +31,7 @@ public class PlayerStats : MonoBehaviour
 
     public void UpdateSpeed(int cooldown)
     {
+        speedUI.SetActive(true);
         speed = defaultSpeed * speedMulti;
         pController.agent.speed = speed; // sets the current player speed to the speed variable on this script
         StartCoroutine(SpeedCooldown(cooldown));
@@ -44,6 +47,7 @@ public class PlayerStats : MonoBehaviour
     public void ResetSpeed()
     {
         speed = defaultSpeed;
+        speedUI.SetActive(false);
     }
 
     public void TakeDamage(int amount)

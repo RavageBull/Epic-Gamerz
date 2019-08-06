@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public int maxhealth = 100; //Maximum health of player
+    public int maxHealthReset = 100;
+    public int maxHealthBuff;
     public int myHealth;
 
     public int CurrentHealth { get; private set; }
@@ -16,7 +18,8 @@ public class Health : MonoBehaviour
     public event Action<int> OnHealthChanged; // On health changed event
 
     public Slider healthbar;
-    
+    public GameObject healthUI;
+
     private void Start()
     {
         CurrentHealth = maxhealth;
@@ -65,6 +68,26 @@ public class Health : MonoBehaviour
 
 
         healthbar.value = CurrentHealth;
+    }
+
+    public void UpdateMaxHealth(int cooldown)
+    {
+        maxhealth = maxhealth * maxHealthBuff;        
+        StartCoroutine(HealthCooldown(cooldown));
+        healthUI.SetActive(true);
+    }
+
+    IEnumerator HealthCooldown(int waitTime)
+    {
+
+        yield return new WaitForSeconds(waitTime);
+        ResetSpeed();
+    }
+
+    public void ResetSpeed()
+    {
+        maxhealth = maxHealthReset;
+        healthUI.SetActive(false);
     }
 
     // Do death stuff

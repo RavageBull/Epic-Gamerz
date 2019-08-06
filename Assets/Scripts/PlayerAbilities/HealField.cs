@@ -20,6 +20,8 @@ public class HealField : MonoBehaviour
     public Text timer;
     public Image clock;
 
+    public GameObject abiltyText;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class HealField : MonoBehaviour
         timer.text = cooldown.ToString("0");
         
         clock.fillAmount = cooldown / fireRate;
+
+        //cooldown = fireRate;
     }
 
     // Update is called once per frame
@@ -40,8 +44,9 @@ public class HealField : MonoBehaviour
         {
             if (cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
-                timer.color = Color.blue;
+                timer.color = Color.white;
                 timer.text = ("X");
+                                
 
                 if (Input.GetButtonDown(PController.F3))
                 {
@@ -67,7 +72,12 @@ public class HealField : MonoBehaviour
 
     void Field()
     {
+
         placedHeal = Instantiate(healObject, playerPos.position, playerPos.rotation);
+
+        abiltyText.SetActive(true); Debug.Log("set Active " + abiltyText.activeSelf);
+        abiltyText.GetComponentInChildren<Text>().text = ("Heal Bot");
+        abiltyText.GetComponentInChildren<Text>().color = Color.green;
 
         /*if (lifeTime > 0)
         {
@@ -82,8 +92,13 @@ public class HealField : MonoBehaviour
         
     void Destruction()
     {
-       // Debug.Log("I am being Detroyed");
-        Destroy(placedHeal, lifeTime);
+        // Debug.Log("I am being Detroyed");
+        Destroy(placedHeal, lifeTime);        
+    }
+
+    public void InactivateText()
+    {
+        abiltyText.SetActive(false);
     }
 
 }

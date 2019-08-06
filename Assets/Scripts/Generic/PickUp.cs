@@ -13,17 +13,18 @@ public class PickUp : MonoBehaviour
     }
     public PickupType myType;
 
-    public float speedMultiValue;
-    public int cooldownValue = 3;
+    public int speedCooldown = 3;
+    public int healthCooldown = 3;
+    public int damageCooldown = 3;
+
     public static bool spawned = false;
 
+    public float speedMultiValue = 5f;
+    public int healthBuff = 25;
     public float damageMultiValue = 5f;
-
-
-
-    //public Material matofobject;
-    public Color newcol;
-
+    
+    //public Color newcol;
+     
     private void Start()
     {
         spawned = true;        
@@ -40,18 +41,19 @@ public class PickUp : MonoBehaviour
                 {
                     case PickupType.speed:
                         player.GetComponent<PlayerStats>().speedMulti = speedMultiValue;
-                        player.GetComponent<PlayerStats>().UpdateSpeed(cooldownValue);                                          
+                        player.GetComponent<PlayerStats>().UpdateSpeed(speedCooldown);
                         DestroyObject();
                         break;
 
                     case PickupType.maxHealth:
-                        player.GetComponent<Health>().maxhealth += 25;
+                        player.GetComponent<Health>().maxHealthBuff += healthBuff;
+                        player.GetComponent<Health>().UpdateMaxHealth(healthCooldown);
                         DestroyObject();
                         break;
 
                     case PickupType.damage:
                         player.GetComponent<BeamAttack>().damageMulti = damageMultiValue;
-                        player.GetComponent<BeamAttack>().UpdateDamage(cooldownValue);
+                        player.GetComponent<BeamAttack>().UpdateDamage(damageCooldown);
                         DestroyObject();
                     break;
                 }

@@ -36,4 +36,9 @@ public class GiveHealth : MonoBehaviour
             delay -= Time.deltaTime;
         }
     }
+
+    private void OnDestroy()
+    {
+        player.GetComponent<HealField>().InactivateText();
+    }
 }
