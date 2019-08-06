@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,9 @@ using UnityEngine.UI;
 public class BeamAttack : MonoBehaviour
 {
     public GameObject currentHitObject;
+
+    public float defaultDamage;
+    public float damageMulti;
 
     public float damage = 1f;  //sets the damage of the rays being cast
     public float maxDistance = 50f;  //sets the range of the ability
@@ -121,7 +125,22 @@ public class BeamAttack : MonoBehaviour
         Gizmos.DrawWireSphere(firePoint + direction * currentHitDistance, sphereRadius);
     }
 
+    public void UpdateDamage(int cooldown)
+    {
+        damage = defaultDamage * damageMulti;
+        StartCoroutine(DamageCooldown(cooldown));
+    }
 
+    IEnumerator DamageCooldown(int waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        ResetDamage();
+    }
+
+    public void ResetDamage()
+    {
+        damage = defaultDamage;
+    }
 }
 
 

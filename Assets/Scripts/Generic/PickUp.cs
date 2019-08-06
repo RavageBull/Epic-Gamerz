@@ -8,7 +8,6 @@ public class PickUp : MonoBehaviour
     {
         speed,
         maxHealth,
-        health,
         damage
     }
     public PickupType myType;
@@ -45,13 +44,9 @@ public class PickUp : MonoBehaviour
                         DestroyObject();
                         break;
 
-                    case PickupType.health:
-                        player.GetComponent<Health>().Change(25);
-                        DestroyObject();
-                        break;
-
                     case PickupType.damage:
                         player.GetComponent<BeamAttack>().damage *= 2;
+                        player.GetComponent<BeamAttack>().
                         DestroyObject();
                         break;
                 }
