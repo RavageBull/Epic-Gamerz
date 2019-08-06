@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 5725711205164371261}
   - component: {fileID: 4903934667072805193}
   m_Layer: 5
-  m_Name: Background (1)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 8708990819071669233}
   - component: {fileID: 4302773177022116167}
   m_Layer: 5
-  m_Name: Background (1)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +515,7 @@ GameObject:
   - component: {fileID: 8645069767118151180}
   - component: {fileID: 2614326374104038246}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 7992122755298225046}
   - component: {fileID: 5440707564894430491}
   m_Layer: 5
-  m_Name: Background (1)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 7680040091761872648}
   - component: {fileID: 8008605863560039443}
   m_Layer: 5
-  m_Name: Background (1)
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -887,7 +887,7 @@ GameObject:
   - component: {fileID: 2027667198310425014}
   - component: {fileID: 4471193317810936230}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 4957004666938638622}
   - component: {fileID: 6419533903022903668}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 3132605782475324864}
   - component: {fileID: 4664545269930692692}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
