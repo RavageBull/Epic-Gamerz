@@ -299,7 +299,7 @@ public class EnemyStates : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("I Died");
+        //Debug.Log("I Died");
         Destroy(gameObject);
     }
      

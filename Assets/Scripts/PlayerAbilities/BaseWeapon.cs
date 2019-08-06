@@ -54,7 +54,7 @@ public class BaseWeapon : MonoBehaviour
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
-                Debug.Log(hit.transform.name);
+                //Debug.Log(hit.transform.name);
                 target.TakeDamage(damage);
             }
         }

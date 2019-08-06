@@ -26,7 +26,7 @@ public class EnemyStats : MonoBehaviour
         health -= amount;
         if(health < 0)
         {
-            Debug.Log("I is dead");
+          //  Debug.Log("I is dead");
             enemyStatesScript.SetStateToDead();
         }
 
