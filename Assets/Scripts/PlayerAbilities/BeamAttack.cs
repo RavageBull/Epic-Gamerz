@@ -9,9 +9,9 @@ public class BeamAttack : MonoBehaviour
     public GameObject currentHitObject;
 
     public float defaultDamage;
+    public float damage = 1f;  //sets the damage of the rays being cast
     public float damageMulti;
 
-    public float damage = 1f;  //sets the damage of the rays being cast
     public float maxDistance = 50f;  //sets the range of the ability
     public float sphereRadius;
     public LayerMask layerMask;
@@ -42,6 +42,8 @@ public class BeamAttack : MonoBehaviour
         timer.text = cooldown.ToString("0");
         
         clock.fillAmount = cooldown / fireRate;
+
+        defaultDamage = damage;
 
     }
 
@@ -98,7 +100,7 @@ public class BeamAttack : MonoBehaviour
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
-                Debug.Log(hit.transform.name);
+               // Debug.Log(hit.transform.name);
                 target.TakeDamage(damage);
             }
         }
@@ -133,6 +135,7 @@ public class BeamAttack : MonoBehaviour
     public void UpdateDamage(int cooldown)
     {
         damage = defaultDamage * damageMulti;
+        Debug.Log("damage updated " + damage);
         StartCoroutine(DamageCooldown(cooldown));
     }
 

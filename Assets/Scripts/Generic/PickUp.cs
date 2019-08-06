@@ -16,6 +16,8 @@ public class PickUp : MonoBehaviour
     public int cooldownValue = 3;
     public static bool spawned = false;
 
+    public float damageMultiValue = 5f;
+
     //public Material matofobject;
     public Color newcol;
 
@@ -45,8 +47,8 @@ public class PickUp : MonoBehaviour
                         break;
 
                     case PickupType.damage:
-                        player.GetComponent<BeamAttack>().damage *= 2;
-                    player.GetComponent<BeamAttack>();
+                        player.GetComponent<BeamAttack>().damageMulti = damageMultiValue;
+                        player.GetComponent<BeamAttack>().UpdateDamage(cooldownValue);
                         DestroyObject();
                     break;
                 }
