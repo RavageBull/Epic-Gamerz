@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealField : MonoBehaviour
 {
-    private float fireRate = 8f;  //the amount of time in seconds before the ability can be used again
+    private float fireRate = 15f;  //the amount of time in seconds before the ability can be used again
     private float cooldown = 0f;  //used to create a timer with Time.time and firerate so the ability cannot be used all the time
 
     PlayerControl PController;
@@ -18,7 +18,7 @@ public class HealField : MonoBehaviour
     public float lifeTime = 5f;
 
     public Text timer;
-    public Slider clock;
+    public Image clock;
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +29,8 @@ public class HealField : MonoBehaviour
         playerPos = gameObject.transform;
 
         timer.text = cooldown.ToString("0");
-        clock.maxValue = fireRate;
-        clock.value = cooldown;
+        
+        clock.fillAmount = cooldown / fireRate;
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class HealField : MonoBehaviour
             else
             {
                 timer.text = cooldown.ToString("0");
-                clock.value = cooldown;
+                clock.fillAmount = cooldown / fireRate;
                 cooldown -= Time.deltaTime;
             }
         }
