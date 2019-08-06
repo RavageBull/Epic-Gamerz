@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUp : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PickUp : MonoBehaviour
     public static bool spawned = false;
 
     public float damageMultiValue = 5f;
+
+
 
     //public Material matofobject;
     public Color newcol;

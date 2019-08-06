@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
@@ -43,9 +44,12 @@ public class Spawner : MonoBehaviour
 
     private float searchCountdown = 1f;
 
+    public Text RoundUI;
+
     private void Start()
     {
         waveCountdown = timeBetweenWaves;
+        RoundUI.text = waveIndex + 1.ToString("0");
 
         if (spawnPoints.Length == 0)
         {
@@ -77,6 +81,7 @@ public class Spawner : MonoBehaviour
             {
                 //Start spawning wave
                 InitializeWave(waves[waveIndex]);
+                RoundUI.text = (waveIndex + 1).ToString("0");
                 ShuffleWave();
                 StartCoroutine(SpawnWave(waves[waveIndex].delay));
             }

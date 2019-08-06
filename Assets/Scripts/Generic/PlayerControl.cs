@@ -6,10 +6,13 @@ using UnityEngine.AI;
 public class PlayerControl : MonoBehaviour
 
 {
+
+
     public enum PlayerIDs
     {
         P1, P2
     }
+
     public PlayerIDs MyID;
 
     [HideInInspector]
