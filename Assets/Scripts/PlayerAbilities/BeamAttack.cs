@@ -27,7 +27,7 @@ public class BeamAttack : MonoBehaviour
 
    // public Slider abilitySlider;
     public Text timer;
-    public Slider clock;
+    public Image clock;
 
     void Start()
     {
@@ -36,8 +36,8 @@ public class BeamAttack : MonoBehaviour
         cooldown = fireRate;
 
         timer.text = cooldown.ToString("0");
-        clock.maxValue = fireRate;
-        clock.value = cooldown;
+        
+        clock.fillAmount = cooldown / fireRate;
 
     }
 
@@ -65,7 +65,12 @@ public class BeamAttack : MonoBehaviour
             else
             {                
                 timer.text = cooldown.ToString("0");
-                clock.value = cooldown;
+                clock.fillAmount = cooldown / fireRate;
+                if(clock.fillAmount <= 0.01f)
+                {
+                    clock.fillAmount = 0f;
+                }
+
                 cooldown -= Time.deltaTime;
             }
         }
