@@ -46,9 +46,9 @@ public class PickUp : MonoBehaviour
 
                     case PickupType.damage:
                         player.GetComponent<BeamAttack>().damage *= 2;
-                        player.GetComponent<BeamAttack>().
+                    player.GetComponent<BeamAttack>();
                         DestroyObject();
-                        break;
+                    break;
                 }
             
         }
