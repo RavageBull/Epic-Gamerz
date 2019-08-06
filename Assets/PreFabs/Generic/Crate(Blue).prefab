@@ -15,8 +15,8 @@ GameObject:
   m_Name: pCube2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3096208627726209552
 Transform:
@@ -94,8 +94,8 @@ GameObject:
   m_Name: Crate(Blue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3096208627726209556
 Transform:
@@ -106,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 3096208627725848116}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.70710677}
   m_LocalPosition: {x: 41.460022, y: 1.5699999, z: 12}
-  m_LocalScale: {x: 1.170003, y: 1.17, z: 1.170003}
+  m_LocalScale: {x: 3.118409, y: 3.1184008, z: 3.118409}
   m_Children:
   - {fileID: 3096208627726209558}
   - {fileID: 3096208627726209552}
@@ -178,8 +178,8 @@ GameObject:
   m_Name: pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3096208627726209558
 Transform:
