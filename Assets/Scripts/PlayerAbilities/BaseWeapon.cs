@@ -21,6 +21,8 @@ public class BaseWeapon : MonoBehaviour
 
     private float currentHitDistance;
 
+    public ParticleSystem Shooty;
+
     private void Start()
     {
         PController = GetComponent<PlayerControl>();
@@ -36,6 +38,7 @@ public class BaseWeapon : MonoBehaviour
             if (Input.GetButtonDown(PController.F1))
             {
                 Shoot();
+                shooty();
             }
       }
         
@@ -46,6 +49,7 @@ public class BaseWeapon : MonoBehaviour
         firePoint = transform.position;
         direction = transform.forward;
         RaycastHit hit;
+
         if (Physics.SphereCast(firePoint, sphereRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
             currentHitObject = hit.transform.gameObject;
@@ -60,10 +64,22 @@ public class BaseWeapon : MonoBehaviour
         }
     }
 
+    void shooty()
+    {
+        Shooty.Play();
+        StartCoroutine(StopShooty(Shooty, 0.15f));
+    }
+
+    IEnumerator StopShooty(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Shooty.Stop();
+    }
+
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Debug.DrawLine(firePoint, firePoint + direction * currentHitDistance);
-        Gizmos.DrawWireSphere(firePoint + direction * currentHitDistance, sphereRadius);
+    Gizmos.color = Color.red;
+    Debug.DrawLine(firePoint, firePoint + direction * currentHitDistance);
+    Gizmos.DrawWireSphere(firePoint + direction * currentHitDistance, sphereRadius);
     }
 }
