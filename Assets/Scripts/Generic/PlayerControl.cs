@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerControl : MonoBehaviour
-
-{
-
-
+{    
     public enum PlayerIDs
     {
         P1, P2
@@ -19,8 +16,13 @@ public class PlayerControl : MonoBehaviour
     public string hStr, vStr, hrStr, F1, F2, F3;
 
     public NavMeshAgent agent;
-    
-    void Awake()
+
+    [Space]
+    public GameObject modelOne;
+    public GameObject modelTwo;
+    public GameObject modelThree;
+
+    private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         switch (MyID)
@@ -32,7 +34,7 @@ public class PlayerControl : MonoBehaviour
                 F1 = "Fire1P1";
                 F2 = "Fire2P1";
                 F3 = "Fire3P1";
-
+                SetCharacter(GameManager.PlayerOneIndex);
                 break;
             case PlayerIDs.P2:
                 hStr = "LHorizontalP2";
@@ -41,7 +43,16 @@ public class PlayerControl : MonoBehaviour
                 F1 = "Fire1P2";
                 F2 = "Fire2P2";
                 F3 = "Fire3P2";
+                SetCharacter(GameManager.PlayerTwoIndex);
                 break;
         }
     }
+
+    private void SetCharacter(int index)
+    {
+        modelOne.SetActive(index == 0);
+        modelTwo.SetActive(index == 1);
+        modelThree.SetActive(index == 2);
+    }
+        
 }
