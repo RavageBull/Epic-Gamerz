@@ -61,10 +61,10 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -129,10 +129,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 0
+  speedCooldown: 20
   speedMultiValue: 5
-  cooldownValue: 3
-  damageMultiValue: 5
-  newcol: {r: 0.55581, g: 0, b: 1, a: 0}
+  healthCooldown: 0
+  healthBuff: 0
+  damageCooldown: 0
+  beamDamageMulti: 1
+  baseDamageMulti: 1
 --- !u!1001 &2474596065053442657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5046096191747316926}
     m_Modifications:
+    - target: {fileID: 100006, guid: fdbc7a040c2565a4eab90a900026a546, type: 3}
+      propertyPath: m_Name
+      value: Speed
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: fdbc7a040c2565a4eab90a900026a546, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.38
@@ -195,10 +202,6 @@ PrefabInstance:
     - target: {fileID: 400006, guid: fdbc7a040c2565a4eab90a900026a546, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.17527944
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: fdbc7a040c2565a4eab90a900026a546, type: 3}
-      propertyPath: m_Name
-      value: Speed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdbc7a040c2565a4eab90a900026a546, type: 3}

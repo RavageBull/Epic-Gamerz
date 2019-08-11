@@ -11,7 +11,10 @@ public class BaseWeapon : MonoBehaviour
 
     public GameObject currentHitObject;
 
+    public int defaultDamage;
     public int damage = 25;
+    public int damageMulti;
+
     public float maxDistance = 100f;
     public float sphereRadius;
     public LayerMask layerMask;
@@ -27,6 +30,7 @@ public class BaseWeapon : MonoBehaviour
     {
         PController = GetComponent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
+        defaultDamage = damage;
     }
 
     // Update is called once per frame
@@ -81,5 +85,26 @@ public class BaseWeapon : MonoBehaviour
     Gizmos.color = Color.red;
     Debug.DrawLine(firePoint, firePoint + direction * currentHitDistance);
     Gizmos.DrawWireSphere(firePoint + direction * currentHitDistance, sphereRadius);
+    }
+
+
+    public void UpdateDamage(int cooldown)
+    {
+        GetComponent<PlayerStats>().pickUpActive = true;
+
+        damage = defaultDamage * damageMulti;
+        StartCoroutine(DamageCooldown(cooldown));
+    }
+
+    IEnumerator DamageCooldown(int waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        ResetDamage();
+    }
+
+    public void ResetDamage()
+    {
+        damage = defaultDamage;
+        damageMulti = 0;
     }
 }

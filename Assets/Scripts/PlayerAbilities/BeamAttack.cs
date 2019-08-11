@@ -143,10 +143,12 @@ public class BeamAttack : MonoBehaviour
 
     public void UpdateDamage(int cooldown)
     {
+        GetComponent<PlayerStats>().pickUpActive = true;
+        damageUI.SetActive(true);
+
         damage = defaultDamage * damageMulti;
         Debug.Log("damage updated " + damage);
         StartCoroutine(DamageCooldown(cooldown));
-        damageUI.SetActive(true);
     }
 
     IEnumerator DamageCooldown(int waitTime)
@@ -158,7 +160,10 @@ public class BeamAttack : MonoBehaviour
     public void ResetDamage()
     {
         damage = defaultDamage;
+        damageMulti = 0;
+
         damageUI.SetActive(false);
+        GetComponent<PlayerStats>().pickUpActive = false;
     }
 }
 

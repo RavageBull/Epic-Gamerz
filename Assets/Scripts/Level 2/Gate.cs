@@ -12,7 +12,8 @@ public class Gate : MonoBehaviour
         {
             if (player.keyObtained == true)
             {
-                player.keyObtained = false;              
+                player.keyObtained = false;
+                player.keyUI.SetActive(false);
                 DestroyObject();
 
             }

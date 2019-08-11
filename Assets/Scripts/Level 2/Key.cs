@@ -12,6 +12,7 @@ public class Key : MonoBehaviour
         if (player != null)
         {
             player.keyObtained = true;
+            player.keyUI.SetActive(true);
             DestroyObject();
         }
     }

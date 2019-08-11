@@ -29,9 +29,10 @@ public class EnemyStates : MonoBehaviour
     public float attackCoolDown = 5f; // How long until the enemy can attack again
 
     public List <PlayerControl> players;
-    private PlayerControl attackTarget;
+    public PlayerControl attackTarget;
     private EnemyStats enemyStats;
-
+    private ColliderDetection colDetect;
+    
     private PlayerControl randPlayer;
 
     [System.NonSerialized] public bool desCoroutineStarted = false;
@@ -40,7 +41,8 @@ public class EnemyStates : MonoBehaviour
     void Start()  
     {
         agent = GetComponent<NavMeshAgent>();
-        //playerMovement = FindObjectOfType<PlayerMovement>(); // Reference to player movement script
+        enemyStats = GetComponent<EnemyStats>();
+        colDetect = GetComponentInChildren<ColliderDetection>();
 
         myState = EnemyState.Patrolling;
                              
@@ -83,8 +85,6 @@ public class EnemyStates : MonoBehaviour
 
             case EnemyState.Patrolling:
 
-                GetComponent<MeshRenderer>().material.color = Color.blue;
-
                 if (!desCoroutineStarted)
                 {
                     StartCoroutine(FindDestination());
@@ -93,8 +93,6 @@ public class EnemyStates : MonoBehaviour
                 break;
 
             case EnemyState.Alert:
-
-                GetComponent<MeshRenderer>().material.color = Color.green;
 
                 desCoroutineStarted = false;
 
@@ -111,8 +109,6 @@ public class EnemyStates : MonoBehaviour
                 break;
 
             case EnemyState.Attacking:
-
-                GetComponent<MeshRenderer>().material.color = Color.red;
 
                 desCoroutineStarted = false;
 
@@ -155,24 +151,27 @@ public class EnemyStates : MonoBehaviour
         //Calculates the distance between the enemy and a random detected player from list of players
         int randIndex = Random.Range(0, players.Count);
         randPlayer = players[randIndex];
-        detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
-                      
-        if(detectedDis < maxDetectDistance && detectedDis > attackingDis) // if the player is in range the chase player
+
+        if (randPlayer != null)
+        {
+            detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);                   
+        }
+
+        if(detectedDis < maxDetectDistance && detectedDis > attackingDis && randPlayer != null) // if the player is in range the chase player
         {
             attackTarget = randPlayer;
             agent.SetDestination(attackTarget.transform.position);
 
         }            
-        else if (detectedDis <= attackingDis)
+        else if (detectedDis <= attackingDis && randPlayer != null)
         {
 
             attackTarget = randPlayer;         
             SetStateToAttack();
   
         }
-        else if (detectedDis > maxDetectDistance)
-        {
-           
+        else /*if (detectedDis > maxDetectDistance)*/
+        {            
             SetStateToPatol();
             return;
     
@@ -187,7 +186,7 @@ public class EnemyStates : MonoBehaviour
           detectedDis = Vector3.Distance(transform.position, randPlayer.transform.position);
         }
 
-        if (detectedDis <= attackingDis)
+        if (detectedDis <= attackingDis && randPlayer != null)
         {
             agent.SetDestination(attackTarget.transform.position);
 
@@ -195,7 +194,6 @@ public class EnemyStates : MonoBehaviour
             {
                 canAttack = true;
                 coolDownTimer = attackCoolDown;
-               // Debug.Log(coolDownTimer);
             }
             else
             {
@@ -204,12 +202,12 @@ public class EnemyStates : MonoBehaviour
 
             if (canAttack && players.Count > 0)
             {
-                attackTarget.GetComponent<Health>().Change(-10);
+                attackTarget.GetComponent<Health>().Change(-enemyStats.damage);
                 canAttack = false;
             }
 
         }
-        else if (detectedDis > attackingDis && detectedDis < maxDetectDistance)
+        else if (detectedDis > attackingDis && detectedDis < maxDetectDistance && randPlayer != null)
         {
             SetStateToAlert();
             return;

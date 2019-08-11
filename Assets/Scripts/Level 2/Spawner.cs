@@ -114,8 +114,7 @@ public class Spawner : MonoBehaviour
 
         if (waveIndex > waves.Length)
         {
-            waveIndex = 0;
-            //currently resets wave loop, but this is where we would trigger end level
+            MainMenu.LoadLevelComplete();
         }
         else
         {

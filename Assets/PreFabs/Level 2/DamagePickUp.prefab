@@ -60,10 +60,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 2
+  speedCooldown: 0
   speedMultiValue: 0
-  cooldownValue: 3
-  damageMultiValue: 5
-  newcol: {r: 0, g: 0, b: 0, a: 0}
+  healthCooldown: 0
+  healthBuff: 0
+  damageCooldown: 5
+  beamDamageMulti: 1
+  baseDamageMulti: 1
 --- !u!1 &2108041983970626561
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,10 +128,10 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0

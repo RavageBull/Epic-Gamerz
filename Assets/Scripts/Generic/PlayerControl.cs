@@ -4,12 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class PlayerControl : MonoBehaviour
-{    
-    public enum PlayerIDs
-    {
-        P1, P2
-    }
-
+{     
     public PlayerIDs MyID;
 
     [HideInInspector]
@@ -21,6 +16,19 @@ public class PlayerControl : MonoBehaviour
     public GameObject modelOne;
     public GameObject modelTwo;
     public GameObject modelThree;
+
+    public Health health;
+
+    private void OnEnable()
+    {
+        health.OnDeath += OnDeath;
+    }
+
+    private void OnDisable()
+    {
+
+        health.OnDeath -= OnDeath;        
+    }
 
     private void Awake()
     {
@@ -46,6 +54,8 @@ public class PlayerControl : MonoBehaviour
                 SetCharacter(GameManager.PlayerTwoIndex);
                 break;
         }
+
+        GameManager.SetPlayerAlive(MyID, true);
     }
 
     private void SetCharacter(int index)
@@ -54,5 +64,15 @@ public class PlayerControl : MonoBehaviour
         modelTwo.SetActive(index == 1);
         modelThree.SetActive(index == 2);
     }
+
+    private void OnDeath()
+    {
+        GameManager.SetPlayerAlive(MyID, false);
+    }
         
+}
+
+public enum PlayerIDs
+{
+    P1, P2
 }

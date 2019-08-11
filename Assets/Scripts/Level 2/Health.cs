@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
 {
     public int maxhealth = 100; //Maximum health of player
     public int maxHealthReset = 100;
+
     public int maxHealthBuff;
     public int myHealth;
 
@@ -15,16 +16,23 @@ public class Health : MonoBehaviour
 
     
     public event Action OnDeath; // On death event
-    public event Action<int> OnHealthChanged; // On health changed event
 
     public Slider healthbar;
     public GameObject healthUI;
+
+    public Text maxHealthCounter;
+        
+    private GameManager gameManager;
 
     private void Start()
     {
         CurrentHealth = maxhealth;
         healthbar.maxValue = maxhealth;
         healthbar.value = CurrentHealth;
+
+        maxHealthCounter.text = maxhealth.ToString("0");
+
+        gameManager = GetComponent<GameManager>();
     }
 
     private void Update()
@@ -39,15 +47,8 @@ public class Health : MonoBehaviour
     {
         
          CurrentHealth += amount;
-                
-        //Debug.Log("health is " + CurrentHealth);
-
-        if(OnHealthChanged != null)
-        {
-            OnHealthChanged(CurrentHealth); //triggers on health changed
-        }
-
-        ValidateHealth();       
+       
+         ValidateHealth();       
     }
 
     // Keep health within values
@@ -72,22 +73,32 @@ public class Health : MonoBehaviour
 
     public void UpdateMaxHealth(int cooldown)
     {
-        maxhealth = maxhealth * maxHealthBuff;        
+        maxhealth = maxhealth * maxHealthBuff;
+        CurrentHealth = maxhealth;
         StartCoroutine(HealthCooldown(cooldown));
+
+        GetComponent<PlayerStats>().pickUpActive = true;
         healthUI.SetActive(true);
+        maxHealthCounter.color = Color.green;
+        maxHealthCounter.text = maxhealth.ToString("0");
     }
 
     IEnumerator HealthCooldown(int waitTime)
     {
-
         yield return new WaitForSeconds(waitTime);
-        ResetSpeed();
+        ResetHealth();
     }
 
-    public void ResetSpeed()
+    public void ResetHealth()
     {
         maxhealth = maxHealthReset;
+        maxHealthBuff = 0;
+
+        GetComponent<PlayerStats>().pickUpActive = false;
+
         healthUI.SetActive(false);
+        maxHealthCounter.color = Color.white;
+        maxHealthCounter.text = maxhealth.ToString("0");
     }
 
     // Do death stuff
@@ -100,15 +111,9 @@ public class Health : MonoBehaviour
         }
 
         Debug.Log("Player died " + CurrentHealth);
-       // GetComponent<MeshRenderer>().material.color = Color.red;
 
-        transform.position = transform.position; //Needs fixing for task 1
-
-        /* Things to do with this script (Script Tasks) */
-
-        // 1. Freeze player in position and stop controller input
-        // 2. If both players are dead we want to end the game / send them back to main menu
-        // 3. If scope allows it, we want to create a reviving system
+        Destroy(gameObject);
+        
     }
 
 }

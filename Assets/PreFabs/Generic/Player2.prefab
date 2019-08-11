@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHitObject: {fileID: 0}
+  defaultDamage: 0
   damage: 25
+  damageMulti: 0
   maxDistance: 100
   sphereRadius: 0
   layerMask:
@@ -190,9 +192,9 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 0.06132126, g: 1, b: 0, a: 1}
-  m_Intensity: 200
+  m_Intensity: 150
   m_Range: 10
-  m_SpotAngle: 67
+  m_SpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -212,7 +214,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -365,6 +367,7 @@ MonoBehaviour:
   modelOne: {fileID: 8781608603475028509}
   modelTwo: {fileID: 4202973252333416214}
   modelThree: {fileID: 7730946940340573008}
+  health: {fileID: 6103234058306593848}
 --- !u!114 &3257098121716169306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +399,7 @@ MonoBehaviour:
   myHealth: 0
   healthbar: {fileID: 0}
   healthUI: {fileID: 0}
+  maxHealthCounter: {fileID: 0}
 --- !u!114 &3558628711735801455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,10 +412,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb680de72e2b584fb4150234c0d31d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 6103234058306593848}
   speed: 0
   defaultSpeed: 0
   speedMulti: 0
   speedUI: {fileID: 0}
+  keyUI: {fileID: 0}
 --- !u!114 &8207018565424032188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,7 +431,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHitObject: {fileID: 0}
+  defaultDamage: 0
   damage: 40
+  damageMulti: 0
   maxDistance: 100
   sphereRadius: 1.5
   layerMask:

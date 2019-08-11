@@ -61,10 +61,10 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -129,10 +129,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myType: 1
+  speedCooldown: 0
   speedMultiValue: 0
-  cooldownValue: 3
-  damageMultiValue: 5
-  newcol: {r: 0, g: 0, b: 0, a: 0}
+  healthCooldown: 20
+  healthBuff: 2
+  damageCooldown: 0
+  beamDamageMulti: 1
+  baseDamageMulti: 1
 --- !u!1001 &8642505724116341247
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 874522307977207372}
     m_Modifications:
+    - target: {fileID: 100000, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
+      propertyPath: m_Name
+      value: HealthUp
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02
@@ -196,33 +203,13 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.26502
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
-      propertyPath: m_Name
-      value: HealthUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 400006, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.54572
-      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.3459667
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300002, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300004, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300006, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 400006, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.54572
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bddee4a98fcea2640920474ac28b99ed, type: 3}

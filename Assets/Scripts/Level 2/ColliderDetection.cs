@@ -5,23 +5,13 @@ using UnityEngine;
 public class ColliderDetection : MonoBehaviour
 {
     private EnemyStates enemyStatesScript;
-
+    
     
     void Start()
     {
         enemyStatesScript = transform.root.GetComponent<EnemyStates>(); // Reference to enemy state script
         
-    }
-
-    void Update()
-    {
-        PlayerControl player = GetComponent<PlayerControl>();
-
-        if (enemyStatesScript.detectedDis > enemyStatesScript.maxDetectDistance)
-        {
-            enemyStatesScript.players.Remove(player);
-        }
-    }
+    }    
 
     void OnTriggerEnter(Collider other)
     {
@@ -35,8 +25,5 @@ public class ColliderDetection : MonoBehaviour
 
             return;
         }
-
-    }
-       
-
+    }   
 }
