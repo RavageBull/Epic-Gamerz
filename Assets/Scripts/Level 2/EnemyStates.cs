@@ -54,6 +54,8 @@ public class EnemyStates : MonoBehaviour
         HandleStates();
 	}
 
+    #region SettingStates
+
     public void SetStateToAlert()
     {
         EnterState(EnemyState.Alert);
@@ -140,7 +142,11 @@ public class EnemyStates : MonoBehaviour
 
         }
     }
-      
+
+    #endregion
+
+    #region Targetting
+
     private void TargetPlayer()
     {
         if (players.Count == 0)
@@ -171,14 +177,18 @@ public class EnemyStates : MonoBehaviour
             SetStateToAttack();
   
         }
-        else /*if (detectedDis > maxDetectDistance)*/
-        {            
+        
+        else
+        {
             SetStateToPatol();
             return;
     
         }
              
     }
+    #endregion
+
+    #region Attacking
 
     private void AttackPlayer()
     {
@@ -223,9 +233,9 @@ public class EnemyStates : MonoBehaviour
         }
 
     }
-       
-         
 
+    #endregion
+       
     #region Detection
 
     IEnumerator FindDestination()

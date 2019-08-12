@@ -57,6 +57,8 @@ MonoBehaviour:
     m_Bits: 0
   firePoint: {x: 0, y: 0, z: 0}
   Shooty: {fileID: 0}
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!54 &1043088351238234588
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -211,7 +213,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
@@ -441,6 +443,8 @@ MonoBehaviour:
     m_Bits: 807
   firePoint: {x: 0, y: 0, z: 0}
   Shooty: {fileID: 9099191025836416525}
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &7235560894538723901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHitObject: {fileID: 0}
+  Shooty: {fileID: 0}
   defaultDamage: 0
   damage: 100
   damageMulti: 0
@@ -468,6 +473,8 @@ MonoBehaviour:
   clock: {fileID: 0}
   damageUI: {fileID: 0}
   abiltyText: {fileID: 0}
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &4416641911987980865
 MonoBehaviour:
   m_ObjectHideFlags: 0
