@@ -63,4 +63,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         MainMenu.LoadGameOver();
     }
+
+    public static void LevelCompleted()
+    {
+        Debug.Log("Level Complete");
+        MainMenu.LoadLevelComplete();
+    }
 }

@@ -114,7 +114,7 @@ public class Spawner : MonoBehaviour
 
         if (waveIndex > waves.Length)
         {
-            MainMenu.LoadLevelComplete();
+            GameManager.LevelCompleted();
         }
         else
         {
