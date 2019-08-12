@@ -26,13 +26,18 @@ public class BaseWeapon : MonoBehaviour
 
     public ParticleSystem Shooty;
 
+    public AudioClip audioClip;
+
+    public AudioSource audioSource;
     private void Start()
     {
         PController = GetComponent<PlayerControl>();
         //otherController = GetComponentInParent<PlayerMovement>();
         defaultDamage = damage;
-    }
+        
 
+    }
+   
     // Update is called once per frame
     void Update()
     {
@@ -43,6 +48,8 @@ public class BaseWeapon : MonoBehaviour
             {
                 Shoot();
                 shooty();
+                audioSource.clip = audioClip;
+                audioSource.Play();
             }
       }
         

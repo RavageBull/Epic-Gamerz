@@ -35,7 +35,10 @@ public class BeamAttack : MonoBehaviour
     public GameObject damageUI;
 
     public GameObject abiltyText;
-  
+
+    public AudioClip audioClip;
+    public AudioSource audioSource;
+
     void Start()
     {
         PController = GetComponentInParent<PlayerControl>();
@@ -47,6 +50,7 @@ public class BeamAttack : MonoBehaviour
         clock.fillAmount = cooldown / fireRate;
 
         defaultDamage = damage;
+        
 
     }
 
@@ -72,7 +76,8 @@ public class BeamAttack : MonoBehaviour
 
                     //Debug.Log("Fired");
                     Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
-
+                    audioSource.clip = audioClip;
+                    audioSource.Play();
                 }
             }
             else
