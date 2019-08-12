@@ -12,7 +12,8 @@ public class EnemyStates : MonoBehaviour
         Dead,
         Attacking
     }
-
+    public AudioClip audioClip;
+    public AudioSource audioSource;
     private EnemyState myState;
 	NavMeshAgent agent;
 
@@ -204,6 +205,8 @@ public class EnemyStates : MonoBehaviour
             {
                 attackTarget.GetComponent<Health>().Change(-enemyStats.damage);
                 canAttack = false;
+                audioSource.clip = audioClip;
+                audioSource.Play();
             }
 
         }
