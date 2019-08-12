@@ -130,12 +130,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 0
   speedCooldown: 20
-  speedMultiValue: 5
+  speedMultiValue: 2
   healthCooldown: 0
   healthBuff: 0
   damageCooldown: 0
-  beamDamageMulti: 1
-  baseDamageMulti: 1
+  beamDamageMulti: 0
+  baseDamageMulti: 0
 --- !u!1001 &2474596065053442657
 PrefabInstance:
   m_ObjectHideFlags: 0

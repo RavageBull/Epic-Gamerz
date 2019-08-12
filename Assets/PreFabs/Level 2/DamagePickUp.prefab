@@ -65,8 +65,8 @@ MonoBehaviour:
   healthCooldown: 0
   healthBuff: 0
   damageCooldown: 5
-  beamDamageMulti: 1
-  baseDamageMulti: 1
+  beamDamageMulti: 2
+  baseDamageMulti: 2
 --- !u!1 &2108041983970626561
 GameObject:
   m_ObjectHideFlags: 0

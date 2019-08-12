@@ -134,8 +134,8 @@ MonoBehaviour:
   healthCooldown: 20
   healthBuff: 2
   damageCooldown: 0
-  beamDamageMulti: 1
-  baseDamageMulti: 1
+  beamDamageMulti: 0
+  baseDamageMulti: 0
 --- !u!1001 &8642505724116341247
 PrefabInstance:
   m_ObjectHideFlags: 0
