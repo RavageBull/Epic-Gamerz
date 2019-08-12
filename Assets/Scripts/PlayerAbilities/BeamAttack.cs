@@ -8,6 +8,8 @@ public class BeamAttack : MonoBehaviour
 {
     public GameObject currentHitObject;
 
+    public ParticleSystem Shooty;
+
     public float defaultDamage;
     public float damage = 1f;  //sets the damage of the rays being cast
     public float damageMulti;
@@ -29,7 +31,7 @@ public class BeamAttack : MonoBehaviour
     PlayerControl PController;
     //PlayerMovement otherController; //just a reference to the enemy testing player script
 
-   // public Slider abilitySlider;
+    // public Slider abilitySlider;
     public Text timer;
     public Image clock;
     public GameObject damageUI;
@@ -46,23 +48,23 @@ public class BeamAttack : MonoBehaviour
         //cooldown = fireRate;
 
         timer.text = cooldown.ToString("0");
-        
+
         clock.fillAmount = cooldown / fireRate;
 
         defaultDamage = damage;
-        
+
 
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
         if (PController != null)
         {
             if (cooldown <= 0f)  //if player uses fire2 and the timer is above or equal to the cooldown then it proceeds
             {
                 timer.color = Color.white;
-                timer.text = ("B");                             
+                timer.text = ("B");
 
                 if (Input.GetButtonDown(PController.F2))
                 {
@@ -78,13 +80,14 @@ public class BeamAttack : MonoBehaviour
                     Cast();  //Cast referce to void Cast() where it shoots the raycast for the ability
                     audioSource.clip = audioClip;
                     audioSource.Play();
+
                 }
             }
             else
             {
                 timer.text = cooldown.ToString("0");
                 clock.fillAmount = cooldown / fireRate;
-                if(clock.fillAmount <= 0.01f)
+                if (clock.fillAmount <= 0.01f)
                 {
                     clock.fillAmount = 0f;
                 }
@@ -92,9 +95,6 @@ public class BeamAttack : MonoBehaviour
                 cooldown -= Time.deltaTime;
             }
         }
-
-        
-
     }
 
 
@@ -112,15 +112,26 @@ public class BeamAttack : MonoBehaviour
             EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
-               // Debug.Log(hit.transform.name);
+                // Debug.Log(hit.transform.name);
                 target.TakeDamage(damage);
             }
+            shooty();
         }
-        
         StartCoroutine("WaitAndExecute");
         Invoke("StopExecution", abilityTime); //when abilityTime is reached it calls StopExecution
     }
 
+    void shooty()
+    {
+        Shooty.Play();
+        StartCoroutine(StopShooty(Shooty, 0.1f));
+    }
+
+    IEnumerator StopShooty(ParticleSystem particleSystem, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Shooty.Stop();
+    }
 
     void StopExecution()
     {
@@ -171,6 +182,7 @@ public class BeamAttack : MonoBehaviour
         GetComponent<PlayerStats>().pickUpActive = false;
     }
 }
+
 
 
 
