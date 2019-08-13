@@ -11,7 +11,8 @@ public class Spawner : MonoBehaviour
     {
         Spawning,
         Waiting,
-        Counting
+        Counting,
+        Complete
     }
 
     private SpawnState state = SpawnState.Counting;
@@ -25,7 +26,7 @@ public class Spawner : MonoBehaviour
     }
 
     public Wave[] waves; // List of waves to iterate through
-    private int waveIndex = 0; // Wave Index
+    public int waveIndex = 0; // Wave Index
 
     [Serializable]
     public class SpawnType
@@ -77,7 +78,7 @@ public class Spawner : MonoBehaviour
 
         if (waveCountdown <= 0)
         {
-            if (state != SpawnState.Spawning)
+            if (state != SpawnState.Spawning && state != SpawnState.Complete)
             {
                 //Start spawning wave
                 InitializeWave(waves[waveIndex]);
@@ -109,16 +110,16 @@ public class Spawner : MonoBehaviour
 
     private void WaveCompleted()
     {
-        state = SpawnState.Counting;
-        waveCountdown = timeBetweenWaves;
-
-        if (waveIndex > waves.Length)
+        waveIndex++;
+        if (waveIndex >= waves.Length)
         {
+            state = SpawnState.Complete;
             GameManager.LevelCompleted();
         }
-        else
-        {
-            waveIndex++;
+        else if (waveIndex < waves.Length - 1)
+        {         
+            state = SpawnState.Counting;
+            waveCountdown = timeBetweenWaves;
         }
     }
 

@@ -6235,6 +6235,11 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1731507154915690987, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6542252920389211923, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
       propertyPath: currentHealth
@@ -6430,6 +6435,16 @@ PrefabInstance:
       propertyPath: sphereRadius
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9195475998207056535, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2051539496}
+    - target: {fileID: 9195475998207056535, guid: a38bf7cbff990d748a754b67c11cafdf,
+        type: 3}
+      propertyPath: audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d40252d24bd87849be218def8a51fa8, type: 3}
     - target: {fileID: 8355619081415057297, guid: a38bf7cbff990d748a754b67c11cafdf,
         type: 3}
       propertyPath: m_Intensity
@@ -6444,11 +6459,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Lightmapping
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1731507154915690987, guid: a38bf7cbff990d748a754b67c11cafdf,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38bf7cbff990d748a754b67c11cafdf, type: 3}
@@ -21489,18 +21499,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348175276}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1348337590 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6542252920389211923, guid: a38bf7cbff990d748a754b67c11cafdf,
-    type: 3}
-  m_PrefabInstance: {fileID: 397866872}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051539495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b64c95fb70875d4ca85e4d1d00b72ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1350031444
 Mesh:
   m_ObjectHideFlags: 0
@@ -27601,7 +27599,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510976629}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8a7373e9308e17542aaac1aae5dd3119, type: 3}
